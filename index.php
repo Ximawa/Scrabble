@@ -42,6 +42,9 @@
             }
         ?>
     </div>
+    <div>
+        Nb de lettres restant dans la pioche : <?php echo $pioche->nombrePieces();?>
+    </div>
     <form method="post" action="">
         <input type="submit" name="pioche" value="Piocher"/>
         <br>
