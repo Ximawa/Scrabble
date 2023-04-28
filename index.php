@@ -1,10 +1,12 @@
 <?php 
     require_once("joueur.php");
     require_once("scrabble.php");
+    require_once("plateau.php");
 
     $game = new Scrabble();
     $pioche = new Pioche();
     $toufik = new Joueur("toufik");
+    $plateau = new Plateau();
 
     if(isset($_POST['pioche'])){
         $toufik->PiocheDebutPartie($pioche);
@@ -28,10 +30,15 @@
 ?>
 <html>
 <head>
-    <title>Scrabble Game</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <title>Scrabble PHP</title>
 </head>
 <body>
-    <h1>Scrabble Game</h1>
+    <h1>Scrabble</h1>
     <div>
         Vos lettres:
     </div>
@@ -43,7 +50,7 @@
         ?>
     </div>
     <div>
-        Nb de lettres restant dans la pioche : <?php echo $pioche->nombrePieces();?>
+        Nb de lettres restant dans la pioche : <?php echo $pioche->nombrePieces(); ?>
     </div>
     <form method="post" action="">
         <input type="submit" name="pioche" value="Piocher"/>
@@ -52,5 +59,18 @@
         <input type="text" name="mot" id="mot">
         <input type="submit" name="submit" value="Check">
     </form>
+    <div id="plateau">
+        <?php
+            foreach($plateau->cellules as $line){
+                foreach($line as $cell){
+        ?>
+                    <input type="button" value="<?php echo $cell->getBonus() ?>" />
+        <?php
+                }
+                echo "<br>";
+            }
+
+        ?>
+    </div>
 </body>
 </html>
