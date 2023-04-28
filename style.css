@@ -34,6 +34,29 @@ h1{
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+#piece input{
+    text-align: center;
+    width: 60px;
+    height: 40px;
+    font-size: 14pt;
+    font-weight: bold;
+    cursor: pointer;
+    background: transparent;
+    border: solid 1px #AAA;
+    color: #FFF;
+    display: inline-block;
+    margin: 4px 2px;
+    transition: all 0.3s ease;
+}
+
+#piece input:hover{
+    transform: scale(1.2);
+    color: #000;
+    background-color: #AAA;
+    transition: all 0.3s ease;
+}
+
+
 #plateau{
     margin-top: 50px;
 
@@ -58,3 +81,4 @@ h1{
     background-color: #AAA;
     transition: all 0.3s ease;
 }
+
