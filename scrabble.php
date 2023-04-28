@@ -12,14 +12,16 @@
             return strpos($fichier, $mot) !== false;
         }
 
-        public function verifMotComposition(string $mot , $main) {
-            foreach ($main as $piece){
-                if(!str_contains($mot, $piece->lettre)){
+        function verifMotComposition($mot, $main) {
+            $lettresMain = array_map(function($lettre) { return $lettre->lettre; }, $main);
+            $lettresMot = str_split($mot);
+            foreach($lettresMot as $lettre) {
+                if(!in_array($lettre, $lettresMain)) {
                     return false;
                 }
             }
             return true;
         }
-    }
+    }        
 
 ?>

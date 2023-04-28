@@ -1,19 +1,35 @@
 <?php 
+
+    
     require_once("joueur.php");
     require_once("scrabble.php");
     require_once("plateau.php");
+
+    session_start();
 
     $game = new Scrabble();
     $pioche = new Pioche();
     $toufik = new Joueur("toufik");
     $plateau = new Plateau();
 
-    if(isset($_POST['pioche'])){
+    
+
+    // if(!isset($_SESSION['toufik'])){
+    //     $toufik->PiocheDebutPartie($pioche);
+    //     $_SESSION['toufik'] = $toufik;
+    //     var_dump($toufik->main);
+    // } 
+
+    if(isset($_POST['pioche']) ){
         $toufik->PiocheDebutPartie($pioche);
+        $_SESSION['toufik'] = $toufik;
     }
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit']) ){
         $mot = $_POST['mot'];
+        $toufik = $_SESSION['toufik'];
+        // var_dump($toufik->main);
+        // var_dump($mot);
         if($game->verifMotComposition($mot, $toufik->main) == true){
             echo "<h2>Mot bien composé de vos lettre </h2>";
             if($game->verifMotValide($mot) == true){
@@ -42,12 +58,12 @@
     <div>
         Vos lettres:
     </div>
-    <div>
+    <div id="piece">
         <?php
             foreach($toufik->main as $piece){
-                echo $piece->lettre. " ";
-            }
         ?>
+                <input type="text" value="<?php echo $piece->lettre ?>" readonly/> 
+            <?php } ?>
     </div>
     <div>
         Nb de lettres restant dans la pioche : <?php echo $pioche->nombrePieces(); ?>
