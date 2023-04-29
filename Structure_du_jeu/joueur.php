@@ -1,5 +1,5 @@
 <?php
-    require_once("pioche.php");
+    require_once('Structure_du_jeu/pioche.php');
 
     class Joueur {
         // Properties

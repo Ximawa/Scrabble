@@ -2,11 +2,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
+
 body{
     text-align: center;
     margin: 0;
     min-height: 100vh;
-    background-image: url("img/background.png");
+    background-image: url('img/background.png');
     background-position: center center;
     background-size: cover;
     animation-name:back;
@@ -26,12 +27,14 @@ body{
         background-size: 100% auto;
     }
 }
-h1{
-    margin: 0;
-    padding: 20px;
-    border-bottom: solid 1px rgba(255, 255, 255, 0.4);
-    color: #EA2;
+
+header{
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+h1{
+    color: #EA2;
+    
 }
 
 #plateau{
@@ -58,3 +61,4 @@ h1{
     background-color: #AAA;
     transition: all 0.3s ease;
 }
+

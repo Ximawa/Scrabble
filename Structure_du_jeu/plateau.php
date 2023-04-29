@@ -1,5 +1,5 @@
 <?php
-    require_once("cellule.php");
+    require_once('Structure_du_jeu/cellule.php');
 
     class Plateau{
         public $cellules;
@@ -7,7 +7,7 @@
         public function __construct(){
             $this->cellules = array();
 
-            $fp = fopen("plateau.txt", 'r');
+            $fp = fopen('Structure_du_jeu/plateau.txt', 'r');
             $countLine = 0;
             $countChar = 0;
 
