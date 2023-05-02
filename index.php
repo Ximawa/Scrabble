@@ -62,25 +62,28 @@
         <?php
             foreach($toufik->main as $piece){
         ?>
-                <input type="text" value="<?php echo $piece->lettre ?>" readonly/> 
+                <input type="button" value="<?php echo $piece->lettre ?>" id="<?php echo $piece->lettre ?>" onClick="jouer(this.value)" /> 
             <?php } ?>
     </div>
     <div>
         Nb de lettres restant dans la pioche : <?php echo $pioche->nombrePieces(); ?>
     </div>
-    <form method="post" action="">
+    <form name="pioche" method="post">
         <input type="submit" name="pioche" value="Piocher"/>
-        <br>
-        <label for="mot">Enter a word:</label>
-        <input type="text" name="mot" id="mot">
-        <input type="submit" name="submit" value="Check">
     </form>
+    <form method="post" action="validationMot.php" name="fo">
+        
+        <input type="submit" name="valide" value="Check Validité"/>
+        <input type="hidden" name="selection" />
+    </form>
+    <div id="motSelection">
+    </div>
     <div id="plateau">
         <?php
             foreach($plateau->cellules as $line){
                 foreach($line as $cell){
         ?>
-                    <input type="button" value="<?php echo $cell->getBonus() ?>" />
+                    <input type="button" value="<?php echo $cell->getBonus() ?>" id="<?php echo $cell->getPosX()."/".$cell->getPosY() ?>" />
         <?php
                 }
                 echo "<br>";
@@ -88,5 +91,13 @@
 
         ?>
     </div>
+    <script>
+        function jouer(value){
+            document.getElementById(value).style.visibility="hidden";
+            document.getElementById("motSelection").innerHTML+='<input type="button" value="'+value+'"  />';
+            document.fo.selection.value+=value;
+
+        }
+    </script>
 </body>
 </html>

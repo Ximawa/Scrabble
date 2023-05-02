@@ -2,30 +2,41 @@
     font-family: 'Roboto', sans-serif;
 }
 
-body{
-    text-align: center;
-    margin: 0;
-    min-height: 100vh;
-    background-image: url("img/background.png");
-    background-position: center center;
-    background-size: cover;
-    animation-name:back;
-    animation-duration: 20s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+input[type=submit]{
+    width: 200px;
+    height: 40px;
+    font-size: 14pt;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #EA2;
+    border: solid 1px #EA2;
+    color: #000;
+    display: inline-block; 
+    margin: 4px 2px;
 }
 
-@keyframes back{
-    0%{
-        background-size: 100% auto;
-    }
-    50%{
-        background-size: 120% auto;
-    }
-    100%{
-        background-size: 100% auto;
-    }
+input[type=submit]:hover{
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    color: #FFF
 }
+
+#motSelection{
+    margin: 10px;
+}
+
+#motSelection input{
+    width: 60px;
+    height: 40px;
+    font-size: 14pt;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid 1px #EA2;
+    color: #EA2;
+    display: inline-block;
+    margin: 4px 2px;
+}
+
 h1{
     margin: 0;
     padding: 20px;
@@ -82,3 +93,28 @@ h1{
     transition: all 0.3s ease;
 }
 
+
+body{
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    background-image: url("img/background.png");
+    background-position: center center;
+    background-size: cover;
+    animation-name:back;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes back{
+    0%{
+        background-size: 100% auto;
+    }
+    50%{
+        background-size: 120% auto;
+    }
+    100%{
+        background-size: 100% auto;
+    }
+}
