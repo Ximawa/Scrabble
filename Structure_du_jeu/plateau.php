@@ -33,24 +33,6 @@
                 $countLine += 1;
             }
 
-
-
-            // foreach($lines as $i => $line){
-            //     foreach($line as $j => $char){
-            //         if ($char == "R"){
-            //             $this->cellulles[$i][$j] = new Cellule($i, $j, "Mot compte Triple");
-            //         }elseif($char == "O"){
-            //             $this->cellulles[$i][$j] = new Cellule($i, $j, "Mot compte Double");
-            //         }elseif($char == "B"){
-            //             $this->cellulles[$i][$j] = new Cellule($i, $j, "Lettre compte Triple");
-            //         }
-            //         elseif($char == "G"){
-            //             $this->cellulles[$i][$j] = new Cellule($i, $j, "Lettre compte Double");
-            //         }elseif($char == "N"){
-            //             $this->cellulles[$i][$j] = new Cellule($i, $j, " ");
-            //         }
-            //     }
-            // }
         }
     }
 

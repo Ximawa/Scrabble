@@ -8,12 +8,24 @@
     $toufik = new Joueur("toufik");
     $plateau = new Plateau();
 
-    if(isset($_POST['pioche'])){
+    
+
+    // if(!isset($_SESSION['toufik'])){
+    //     $toufik->PiocheDebutPartie($pioche);
+    //     $_SESSION['toufik'] = $toufik;
+    //     var_dump($toufik->main);
+    // } 
+
+    if(isset($_POST['pioche']) ){
         $toufik->PiocheDebutPartie($pioche);
+        $_SESSION['toufik'] = $toufik;
     }
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit']) ){
         $mot = $_POST['mot'];
+        $toufik = $_SESSION['toufik'];
+        // var_dump($toufik->main);
+        // var_dump($mot);
         if($game->verifMotComposition($mot, $toufik->main) == true){
             echo "<h2>Mot bien composé de vos lettre </h2>";
             if($game->verifMotValide($mot) == true){
@@ -63,7 +75,7 @@
             foreach($plateau->cellules as $line){
                 foreach($line as $cell){
         ?>
-                    <input type="button" value="<?php echo $cell->getBonus() ?>" />
+                    <input type="button" value="<?php echo $cell->getBonus() ?>" id="<?php echo $cell->getPosX()."/".$cell->getPosY() ?>" />
         <?php
                 }
                 echo "<br>";
