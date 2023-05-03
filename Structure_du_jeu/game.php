@@ -1,6 +1,6 @@
 <?php 
-    require_once('joueur.php');
-    require_once('scrabble.php');
+    require_once('./Structure_du_jeu/joueur.php');
+    require_once('./Structure_du_jeu/scrabble.php');
 
     session_start();
 
@@ -114,7 +114,17 @@
         </div>
     </main>
     <footer>
+        
         <p>SCORE BOARD</p>
+
+        <section class="footer">
+            <li><a href="">Contact</a></li>
+            <li><a href="">Conditions d'utilisation</a></li>
+            <li><a href="">Credits</a></li>
+            <li><a href="">Paramètres de confidentialité</a></li>
+        </section>
+        
+        <p>Le propriétaire de ce site n’est pas responsable du contenu généré par l’utilisateur (mot utiliser, messages, noms d’utilisateur)</p>
     </footer>  
 </body>
 </html>
