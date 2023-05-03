@@ -28,7 +28,7 @@
             return true;
         }
 
-        function poserMot($mot, $joueur,$direction, $posX, $posY){
+        function poserMot($mot, $joueur, $direction, $posX, $posY){
             // Check mot compose de la main
             if($this->verifMotComposition($mot, $joueur->main) == true) {
                 // Check if mot valide dictionnaire
@@ -38,13 +38,13 @@
                     if ($direction == "hori") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posY][$posX + $i]->setLettre($mot[$i]);
-                        
-                            
+                            $joueur->RetirerPiece($mot[$i]);
                         }
                         return "done";
                     } elseif ($direction == "verti") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posY + $i][$posX]->setLettre($mot[$i]);
+                            $joueur->RetirerPiece($mot[$i]);
                         }
                         return "done";
                     } else {

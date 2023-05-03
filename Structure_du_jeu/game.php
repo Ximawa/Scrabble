@@ -29,7 +29,7 @@
 
 
     if(isset($_POST['pioche'])){
-
+        $_SESSION['joueur_en_cours']->Piocher($_SESSION['pioche']);
     }
 
     if(isset($_POST['submit'])){
