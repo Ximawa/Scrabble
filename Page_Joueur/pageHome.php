@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href='.\affichage\styleHome.css'>
+    <link href="..\affichage\styleHome.css" rel="stylesheet" >
     <title>Document</title>
 </head>
 <body>
     <header>
-        <img src="C:\xampp\htdocs\Projet Scrable Seb branch\img\Logo_Epsi_Scrabble.png" alt="logo">
+        <img src="..\img\Logo_Epsi_Scrabble.png" alt="logo">
         <div>
             <button>
                 Connexion
@@ -43,14 +43,19 @@
     </main>
 
     <footer>
-        <section>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Conditions d'utilisation</a></li>
-            <li><a href="">Credits</a></li>
-            <li><a href="">Paramètres de confidentialité</a></li>
+        <section class="container mt-2">
+            <div class="row">
+                <li class = "col"><a href="">Contact</a></li>
+                <li class = "col"><a href="">Conditions d'utilisation</a></li>
+                <li class = "col"><a href="">Credits</a></li>
+                <li class = "col"><a href="">Paramètres de confidentialité</a></li>
+            </div>
+            
         </section>
+        <center>
+            <p>Le propriétaire de ce site n’est pas responsable du contenu généré par l’utilisateur (mot utiliser, messages, noms d’utilisateur)</p>
+        </center>
         
-        <p>Le propriétaire de ce site n’est pas responsable du contenu généré par l’utilisateur (mot utiliser, messages, noms d’utilisateur)</p>
     </footer>
 
 </body>
