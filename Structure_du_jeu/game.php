@@ -30,6 +30,12 @@
 
     if(isset($_POST['pioche'])){
         $_SESSION['joueur_en_cours']->Piocher($_SESSION['pioche']);
+
+        if($_SESSION['joueur_en_cours'] == $_SESSION['joueur1']){
+            $_SESSION['joueur_en_cours'] = $_SESSION['joueur2'];
+        }else{
+            $_SESSION['joueur_en_cours'] = $_SESSION['joueur1'];
+        }
     }
 
     if(isset($_POST['submit'])){
