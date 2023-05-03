@@ -7,32 +7,41 @@
         public function __construct(){
             $this->cellules = array();
 
-            $fp = fopen('Structure_du_jeu/plateau.txt', 'r');
-            $countLine = 0;
-            $countChar = 0;
-
-            while(!feof($fp)){
-                $line = fgets($fp, 17);
-                $chars = str_split($line);
-                foreach($chars as $char){
-                    if ($char == "R"){
-                            $this->cellules[$countLine][$countChar] = new Cellule($countLine, $countChar, "Mot compte Triple");
-                        }elseif($char == "O"){
-                            $this->cellules[$countLine][$countChar] = new Cellule($countLine, $countChar, "Mot compte Double");
-                        }elseif($char == "B"){
-                            $this->cellules[$countLine][$countChar] = new Cellule($countLine, $countChar, "Lettre compte Triple");
+            $handle = fopen("Structure_du_jeu/plateau.txt", "r");
+            if ($handle) {
+                $countLine = 1;
+                while (($line = fgets($handle)) !== false) {
+                    $this->cellules[$countLine] = array();
+                    $chars = str_split(trim($line));
+                    $countChar = 1;
+                    foreach ($chars as $char) {
+                        switch ($char) {
+                            case 'R':
+                                $bonus = "motTriple";
+                                break;
+                            case 'O':
+                                $bonus = "motDouble";
+                                break;
+                            case 'B':
+                                $bonus = "lettreTriple";
+                                break;
+                            case 'G':
+                                $bonus = "lettreDouble";
+                                break;
+                            default:
+                                $bonus = "normal";
                         }
-                        elseif($char == "G"){
-                            $this->cellules[$countLine][$countChar] = new Cellule($countLine, $countChar, "Lettre compte Double");
-                        }elseif($char == "N"){
-                            $this->cellules[$countLine][$countChar] = new Cellule($countLine, $countChar, " ");
-                        }
+                        $this->cellules[$countLine][$countChar] = new Cellule($countLine, $countChar, $bonus);
                         $countChar++;
+                    }
+                    $countLine++;
                 }
-                $countChar = 0;
-                $countLine += 1;
+                fclose($handle);
             }
+        }
 
+        public function getCellules($posX, $posY){
+            return $this->cellules[$posX][$posY];
         }
     }
 

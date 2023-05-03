@@ -1,13 +1,31 @@
 <?php 
     require_once('./Structure_du_jeu/joueur.php');
     require_once('./Structure_du_jeu/scrabble.php');
-    require_once('./Structure_du_jeu/plateau.php');
+
+
+    session_start();
 
     $game = new Scrabble();
     $pioche = new Pioche();
     $toufik = new Joueur("toufik");
-    $plateau = new Plateau();
 
+
+
+    if(isset($_POST['pioche'])){
+        $toufik->PiocheDebutPartie($pioche);
+        $_SESSION['toufik'] = $toufik;
+    }
+
+    if(isset($_POST['submit'])){
+        $mot = $_POST['mot'];
+        $direction = $_POST['direction'];
+        $posX = $_POST['posX'];
+        $posY = $_POST['posY'];
+        $toufik = $_SESSION['toufik'];
+
+        echo $game->poserMot($mot, $toufik, $direction, $posX, $posY);
+        
+    }
 
 ?>
 <html>
@@ -22,24 +40,16 @@
 <body>
     <header>
         <section>         
-                <h1 ><img src="img\Logo_Epsi_Scrabble.png" alt="LOGO du jeu" >Scrabble</h1>
+                <h1><img src="img\Logo_Epsi_Scrabble.png" alt="LOGO du jeu">Scrabble</h1>
         </section>      
     </header>
     <main>
-       <section class="container-sm">
-        <div class ="row ">
-            <p class ="col">Player 1</p>
-            <p class ="col">Score</p> 
-            <p class ="col">Player 2</p>
-            <p class ="col">Score</p>
-        </div>
-    </section>
     <div id="plateau">
         <?php
-            foreach($plateau->cellules as $line){
+            foreach($game->plateau->cellules as $line){
                 foreach($line as $cell){
         ?>
-                    <input type="button" value="<?php echo $cell->getLettre() ?>" />
+                    <input type="text" value="<?php echo $cell->getLettre() ?>"  readonly/>
         <?php
                 }
                 echo "<br>";
@@ -62,7 +72,7 @@
             </form>
         </div>
         <div >
-            <form name="mot" method="post" action="">
+            <form name="submit" method="post" action="">
                 <input type="text" name="mot">
                 <select name="direction">
                     <option value="">--Choissisez un sens--</option>
