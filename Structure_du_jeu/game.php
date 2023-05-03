@@ -1,6 +1,6 @@
 <?php 
-    require_once('joueur.php');
-    require_once('scrabble.php');
+    require_once('./Structure_du_jeu/joueur.php');
+    require_once('./Structure_du_jeu/scrabble.php');
 
 
     session_start();
