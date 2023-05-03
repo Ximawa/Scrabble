@@ -62,8 +62,29 @@
             </form>
         </div>
         <div >
-            <form name="fo" method="post" action="">
-                <input type="hidden" name="selection">
+            <form name="mot" method="post" action="">
+                <input type="text" name="mot">
+                <select name="direction">
+                    <option value="">--Choissisez un sens--</option>
+                    <option value="hori">Horizontale</option>
+                    <option value="verti">verticale</option>
+                </select>
+                <select name="posX">
+                    <option value="">--Choissisez une PosX--</option>
+                    <?php
+                    for($x=1; $x<16; $x++){
+                        echo '<option value='.$x.'>'.$x.'</option>';
+                    }
+                    ?>
+                </select>
+                <select name="posY">
+                    <option value="">--Choissisez une PosY--</option>
+                    <?php
+                    for($y=1; $y<16; $y++){
+                        echo '<option value='.$y.'>'.$y.'</option>';
+                    }
+                    ?>
+                </select>
                 <input type="submit" name="submit" value="Check">
             </form>
         </div>
