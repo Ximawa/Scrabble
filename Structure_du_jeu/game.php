@@ -1,6 +1,6 @@
 <?php 
-    require_once('./Structure_du_jeu/joueur.php');
-    require_once('./Structure_du_jeu/scrabble.php');
+    require_once('joueur.php');
+    require_once('scrabble.php');
 
 
     session_start();
@@ -34,13 +34,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href='affichage/style.css'>
+    <link rel="stylesheet" href='../affichage/style.css'>
     <title>Scrabble PHP</title>
 </head>
 <body>
     <header>
         <section>         
-                <h1><img src="img\Logo_Epsi_Scrabble.png" alt="LOGO du jeu">Scrabble</h1>
+                <h1><img src="../img\Logo_Epsi_Scrabble.png" alt="LOGO du jeu">Scrabble</h1>
         </section>      
     </header>
     <main>
@@ -63,7 +63,7 @@
             <div class = "col" id="main">
                 <?php
                     foreach($toufik->main as $piece){
-                        echo "<input type=\"button\" value=\"". $piece->lettre."\" onClick=\"jouer(this.value)\" id=\"". $piece->lettre."\"./>";
+                        echo "<input type=\"button\" value=\"". $piece->lettre."\"  />";
                     }
                 ?>
             </div>

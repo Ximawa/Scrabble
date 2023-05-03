@@ -51,6 +51,7 @@ h1{
 
 }
 #plateau input{
+    text-align: center;
     width: 60px;
     height: 40px;
     font-size: 14pt;

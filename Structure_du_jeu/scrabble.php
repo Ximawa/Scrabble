@@ -1,5 +1,5 @@
 <?php
-    require_once('./Structure_du_jeu/plateau.php');
+    require_once('plateau.php');
 
     class Scrabble {
 
