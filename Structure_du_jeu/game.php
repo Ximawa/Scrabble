@@ -1,6 +1,6 @@
 <?php 
-    require_once('./Structure_du_jeu/joueur.php');
-    require_once('./Structure_du_jeu/scrabble.php');
+    require_once('joueur.php');
+    require_once('scrabble.php');
 
     session_start();
 
@@ -8,30 +8,46 @@
         
         $game = new Scrabble();
         $pioche = new Pioche();
-        $toufik = new Joueur("toufik");
+        $joueur1 = new Joueur($_POST['joueur1']);
+        $joueur1->PiocheDebutPartie($pioche);
+
+
+        $joueur2 = new Joueur($_POST['joueur2']);
+        $joueur2->PiocheDebutPartie($pioche);
 
         $_SESSION['game'] = $game;
         $_SESSION['pioche'] = $pioche;
-        $_SESSION['toufik'] = $toufik;
+        $_SESSION['joueur1'] = $joueur1;
+        $_SESSION['joueur2'] = $joueur2;
+
+        $_SESSION['joueur_en_cours'] = $joueur1;
     }
+
+    
+
+
 
 
     if(isset($_POST['pioche'])){
-        $pioche = $_SESSION['pioche'];
-        $toufik = $_SESSION['toufik'];
-        $toufik->PiocheDebutPartie($pioche);
-        $_SESSION['toufik'] = $toufik;
+
     }
 
     if(isset($_POST['submit'])){
         $game = $_SESSION['game'];
+
+        $joueur = $_SESSION['joueur_en_cours'];
         $mot = $_POST['mot'];
         $direction = $_POST['direction'];
         $posX = $_POST['posX'];
         $posY = $_POST['posY'];
-        $toufik = $_SESSION['toufik'];
 
-        echo $game->poserMot($mot, $toufik, $direction, $posX, $posY);
+        echo $game->poserMot($mot, $joueur, $direction, $posX, $posY);
+
+        if($_SESSION['joueur_en_cours'] == $_SESSION['joueur1']){
+            $_SESSION['joueur_en_cours'] = $_SESSION['joueur2'];
+        }else{
+            $_SESSION['joueur_en_cours'] = $_SESSION['joueur1'];
+        }
         
     }
 
@@ -52,6 +68,16 @@
         </section>      
     </header>
     <main>
+    <div id="infosJoueurs">
+        <div>
+            <?php echo $_SESSION['joueur1']->nom ?>
+            <?php echo $_SESSION['joueur1']->score ?>
+        </div>
+        <div>
+            <?php echo $_SESSION['joueur2']->nom ?>
+            <?php echo $_SESSION['joueur2']->score ?>
+        </div>
+    </div>
     <div id="plateau">
         <?php
             $game = $_SESSION['game'];
@@ -71,8 +97,9 @@
             <p class ="col">Nb de lettres restant dans la pioche : <?php echo $_SESSION['pioche']->nombrePieces(); ?></p> 
             <div class = "col" id="main">
                 <?php
-                    $toufik = $_SESSION['toufik'];
-                    foreach($toufik->main as $piece){
+                    $joueur_en_cours = $_SESSION['joueur_en_cours'];
+                    echo '<div>Main de '.$joueur_en_cours->nom.'</div>';
+                    foreach($joueur_en_cours->main as $piece){
                         echo "<input type=\"button\" value=\"". $piece->lettre."\"  />";
                     }
                 ?>
@@ -109,9 +136,9 @@
             </form>
         </div>
     </section>
-        <div>
+        <!-- <div>
             <img src="./img/Plateau" alt="Plateau de jeu du Scrabble">
-        </div>
+        </div> -->
     </main>
     <footer>
         

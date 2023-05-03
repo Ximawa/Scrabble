@@ -15,6 +15,12 @@
         </section>      
     </header>
     <form method="post" action="Structure_du_jeu/game.php">
+        <input type="text" name="joueur1" placeholder="Nom joueur 1">
+        <br>
+        <br>
+        <input type="text" name="joueur2" placeholder="Nom joueur 2">
+        <br>
+        <br>
         <input type="submit" name="start" value="Lancer Partie">
     </form>
 </body>
