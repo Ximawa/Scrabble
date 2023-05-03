@@ -2,11 +2,13 @@
     class Cellule {
         private $posX, $posY;
         private $bonus;
+        private $lettre;
 
         public function __construct($posX, $posY, $bonus) {
             $this->posX = $posX;
             $this->posY = $posY;
             $this->bonus = $bonus;
+            $this->lettre = "";
         }
 
         public function getPosX() {
@@ -18,6 +20,9 @@
         public function getBonus() {
             return $this->bonus;
         }
+        public function getLettre(){
+            return $this->lettre;
+        }
 
         public function setPosX($posX) {
             $this->posX = $posX;
@@ -27,6 +32,9 @@
         }
         public function setBonus($bonus) {
             $this->bonus = $bonus;
+        }
+        public function setLettre($lettre){
+            $this->lettre = $lettre;
         }
     }
 
