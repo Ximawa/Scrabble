@@ -13,7 +13,7 @@
         }
 
         public function verifMotValide(string $mot) {
-            $fichier = file_get_contents('Structure_du_jeu\listeMot.txt');
+            $fichier = file_get_contents('listeMot.txt');
             return strpos($fichier, $mot) !== false;
         }
 

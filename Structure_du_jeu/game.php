@@ -2,21 +2,29 @@
     require_once('joueur.php');
     require_once('scrabble.php');
 
-
     session_start();
 
-    $game = new Scrabble();
-    $pioche = new Pioche();
-    $toufik = new Joueur("toufik");
+    if(isset($_POST['start'])){
+        
+        $game = new Scrabble();
+        $pioche = new Pioche();
+        $toufik = new Joueur("toufik");
 
+        $_SESSION['game'] = $game;
+        $_SESSION['pioche'] = $pioche;
+        $_SESSION['toufik'] = $toufik;
+    }
 
 
     if(isset($_POST['pioche'])){
+        $pioche = $_SESSION['pioche'];
+        $toufik = $_SESSION['toufik'];
         $toufik->PiocheDebutPartie($pioche);
         $_SESSION['toufik'] = $toufik;
     }
 
     if(isset($_POST['submit'])){
+        $game = $_SESSION['game'];
         $mot = $_POST['mot'];
         $direction = $_POST['direction'];
         $posX = $_POST['posX'];
@@ -46,6 +54,7 @@
     <main>
     <div id="plateau">
         <?php
+            $game = $_SESSION['game'];
             foreach($game->plateau->cellules as $line){
                 foreach($line as $cell){
         ?>
@@ -59,9 +68,10 @@
     </div>
     <section class ="container-sm">
         <div class ="row">
-            <p class ="col">Nb de lettres restant dans la pioche : <?php echo $pioche->nombrePieces(); ?></p> 
+            <p class ="col">Nb de lettres restant dans la pioche : <?php echo $_SESSION['pioche']->nombrePieces(); ?></p> 
             <div class = "col" id="main">
                 <?php
+                    $toufik = $_SESSION['toufik'];
                     foreach($toufik->main as $piece){
                         echo "<input type=\"button\" value=\"". $piece->lettre."\"  />";
                     }
