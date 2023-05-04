@@ -38,6 +38,10 @@
                         if($this->passeParCentre($mot,$posX,$posY,$direction) == false){
                             return "Le premier mot doit passer par le centre";
                         }
+                    }else{
+                        if($this->Adjacent($mot, $posX, $posY, $direction) == false){
+                            return "Les mots doivent être adjacent a un mot existant";
+                        }
                     }
 
                     // Poser mot 
@@ -65,9 +69,7 @@
                 }
             } else {
                 return "Mot pas composé de la main";
-            }
-            
-            
+            }  
         }
 
         function passeParCentre($mot, $posX, $posY, $direction){
@@ -94,6 +96,35 @@
                 for($i=0; $i<$len; $i++){
                     $posY += $i;
                     if($posX == 8 && $posY == 8){
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        function Adjacent($mot, $posX, $posY, $direction){
+            if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY)->getLettre() != ""
+                || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
+                    return true;
+                }
+
+            if($direction == "hori"){
+                $len = strlen($mot);
+                for($i=0; $i<$len; $i++){
+                    $posX += $i;
+                    if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY)->getLettre() != ""
+                        || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
+                        return true;
+                    }
+                }
+            }elseif($direction == "verti"){
+                $len = strlen($mot);
+                for($i=0; $i<$len; $i++){
+                    $posY += $i;
+                    if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY)->getLettre() != ""
+                        || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
                         return true;
                     }
                 }
