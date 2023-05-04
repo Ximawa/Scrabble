@@ -84,6 +84,7 @@
             <?php echo $_SESSION['joueur2']->score ?>
         </div>
     </div>
+    <div>Tour de <?php echo $_SESSION['joueur_en_cours']->nom ?></div>
     <div id="plateau">
         <?php
             $game = $_SESSION['game'];
