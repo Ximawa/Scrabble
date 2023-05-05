@@ -47,14 +47,13 @@
         $posX = $_POST['posX'];
         $posY = $_POST['posY'];
 
-        echo $game->poserMot($mot, $joueur, $direction, $posX, $posY);
-
-        if($_SESSION['joueur_en_cours'] == $_SESSION['joueur1']){
-            $_SESSION['joueur_en_cours'] = $_SESSION['joueur2'];
-        }else{
-            $_SESSION['joueur_en_cours'] = $_SESSION['joueur1'];
+        if($game->poserMot($mot, $joueur, $direction, $posX, $posY) == true){
+            if($_SESSION['joueur_en_cours'] == $_SESSION['joueur1']){
+                $_SESSION['joueur_en_cours'] = $_SESSION['joueur2'];
+            }else{
+                $_SESSION['joueur_en_cours'] = $_SESSION['joueur1'];
+            }
         }
-        
     }
 
 ?>

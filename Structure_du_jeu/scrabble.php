@@ -36,14 +36,17 @@
                     // Check if premier mot passe par case central
                     if(count($this->motJouer) == 0){
                         if($this->passeParCentre($mot,$posX,$posY,$direction) == false){
-                            return "Le premier mot doit passer par le centre";
+                            echo "Le premier mot doit passer par le centre";
+                            return false;
                         }
                     }else{
                         if($this->Adjacent($mot, $posX, $posY, $direction) == false){
-                            return "Les mots doivent être adjacent a un mot existant";
+                            echo "Les mots doivent être adjacent a un mot existant";
+                            return false;
                         }
                         if($this->emplaceMotDisponible($mot, $posX, $posY, $direction) == false){
-                            return "Vous ne pouvez pas poser un mot par dessus un mot existant";
+                            echo "Vous ne pouvez pas poser un mot par dessus un mot existant";
+                            return false;
                         }
                     }
 
@@ -53,25 +56,29 @@
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posY][$posX + $i]->setLettre($mot[$i]);
                             $joueur->RetirerPiece($mot[$i]);
-                            
                         }
                         $this->motJouer[] = $mot;
-                        return "done";
+                        echo "done";
+                        return true;
                     } elseif ($direction == "verti") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posY + $i][$posX]->setLettre($mot[$i]);
                             $joueur->RetirerPiece($mot[$i]);
                         }
                         $this->motJouer[] = $mot;
-                        return "done";
+                        echo "done";
+                        return true;
                     } else {
-                        return "Direction invalide";
+                        echo "Direction invalide";
+                        return false;
                     }
                 } else {
-                    return "Mot non valide";
+                    echo "Mot non valide";
+                    return false;
                 }
             } else {
-                return "Mot pas composé de la main";
+                echo "Mot pas composé de la main";
+                return false;
             }  
         }
 
