@@ -42,6 +42,9 @@
                         if($this->Adjacent($mot, $posX, $posY, $direction) == false){
                             return "Les mots doivent être adjacent a un mot existant";
                         }
+                        if($this->emplaceMotDisponible($mot, $posX, $posY, $direction) == false){
+                            return "Vous ne pouvez pas poser un mot par dessus un mot existant";
+                        }
                     }
 
                     // Poser mot 
@@ -131,6 +134,28 @@
             }
 
             return false;
+        }
+
+        function emplaceMotDisponible($mot, $posX, $posY, $direction){
+            if($direction == "hori"){
+                $len = strlen($mot);
+                for($i=0; $i<$len; $i++){
+                    $posX += $i;
+                    if($this->plateau->getCellules($posX, $posY)->getLettre() != ""){
+                        return false;
+                    }
+                }
+            }elseif($direction == "verti"){
+                $len = strlen($mot);
+                for($i=0; $i<$len; $i++){
+                    $posY += $i;
+                    if($this->plateau->getCellules($posX, $posY)->getLettre() != ""){
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }        
 
