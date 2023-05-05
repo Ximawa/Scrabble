@@ -28,7 +28,7 @@
             return true;
         }
 
-        function poserMot($mot, $joueur, $direction, $posX, $posY){
+        function poserMot($mot, $joueur, $direction, $posX, $posY, $pioche){
             // Check mot compose de la main
             if($this->verifMotComposition($mot, $joueur->main) == true) {
                 // Check if mot valide dictionnaire
@@ -58,7 +58,7 @@
                             $joueur->RetirerPiece($mot[$i]);     
                         }
                         $this->motJouer[] = $mot;
-                        echo "done";
+                        $joueur->Piocher($pioche);
                         return true;
                     } elseif ($direction == "verti") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
@@ -67,7 +67,7 @@
                             $joueur->RetirerPiece($mot[$i]);
                         }
                         $this->motJouer[] = $mot;
-                        echo "done";
+                        $joueur->Piocher($pioche);
                         return true;
                     }
                 } else {

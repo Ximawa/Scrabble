@@ -23,13 +23,8 @@
         $_SESSION['joueur_en_cours'] = $joueur1;
     }
 
-    
-
-
-
-
     if(isset($_POST['pioche'])){
-        $_SESSION['joueur_en_cours']->Piocher($_SESSION['pioche']);
+        $_SESSION['joueur_en_cours']->changerLettre($_SESSION['pioche']);
 
         if($_SESSION['joueur_en_cours'] == $_SESSION['joueur1']){
             $_SESSION['joueur_en_cours'] = $_SESSION['joueur2'];
@@ -38,16 +33,28 @@
         }
     }
 
-    if(isset($_POST['submit'])){
-        $game = $_SESSION['game'];
 
+
+
+    if(isset($_POST['pass'])){
+        if($_SESSION['joueur_en_cours'] == $_SESSION['joueur1']){
+            $_SESSION['joueur_en_cours'] = $_SESSION['joueur2'];
+        }else{
+            $_SESSION['joueur_en_cours'] = $_SESSION['joueur1'];
+        }
+    }
+
+    if(isset($_POST['submit'])){
+        $game = $_SESSION['game']; 
         $joueur = $_SESSION['joueur_en_cours'];
+        $pioche = $_SESSION['pioche'];
+
         $mot = $_POST['mot'];
         $direction = $_POST['direction'];
         $posX = $_POST['posX'];
         $posY = $_POST['posY'];
 
-        if($game->poserMot($mot, $joueur, $direction, $posX, $posY) == true){
+        if($game->poserMot($mot, $joueur, $direction, $posX, $posY, $pioche) == true){
             if($_SESSION['joueur_en_cours'] == $_SESSION['joueur1']){
                 $_SESSION['joueur_en_cours'] = $_SESSION['joueur2'];
             }else{
@@ -111,7 +118,11 @@
                 ?>
             </div>
             <form method="post" action="" class ="col">
-                <input type="submit" name="pioche" value="Piocher"/>
+                <input type="submit" name="pioche" value="Changer vos lettres"/>
+            </form>
+
+            <form method="post" action="" class ="col">
+                <input type="submit" name="pass" value="Passer votre tour"/>
             </form>
         </div>
         <div >

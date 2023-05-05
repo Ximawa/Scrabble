@@ -49,6 +49,19 @@
                 }
             }
         }
+
+        public function changerLettre($pioche){
+            $pioche->pieces = array_merge($pioche->pieces, $this->main);
+
+            $this->main = array();
+
+            for ($i = 0; $i < 7; $i++) {
+                $index = rand(0, count($pioche->pieces) - 1);
+                $piece = $pioche->pieces[$index];
+                array_splice($pioche->pieces, $index, 1);
+                $this->main[] = $piece;
+            }
+        }
     }
 
 
