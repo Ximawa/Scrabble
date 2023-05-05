@@ -49,13 +49,13 @@
                             return false;
                         }
                     }
-
                     // Poser mot 
                     $longueur_mot = strlen($mot);
                     if ($direction == "hori") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posY][$posX + $i]->setLettre($mot[$i]);
-                            $joueur->RetirerPiece($mot[$i]);
+                            $joueur->AjouterScore($mot[$i]);
+                            $joueur->RetirerPiece($mot[$i]);     
                         }
                         $this->motJouer[] = $mot;
                         echo "done";
@@ -63,14 +63,12 @@
                     } elseif ($direction == "verti") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posY + $i][$posX]->setLettre($mot[$i]);
+                            $joueur->AjouterScore($mot[$i]);
                             $joueur->RetirerPiece($mot[$i]);
                         }
                         $this->motJouer[] = $mot;
                         echo "done";
                         return true;
-                    } else {
-                        echo "Direction invalide";
-                        return false;
                     }
                 } else {
                     echo "Mot non valide";
@@ -95,17 +93,15 @@
 
             if($direction == "hori"){
                 $len = strlen($mot);
-                for($i=0; $i<$len; $i++){
-                    $posX += $i;
-                    if($posX == 8 && $posY == 8){
+                for($i=$posX; $i<($len + $posX); $i++){
+                    if($i == 8 && $posY == 8){
                         return true;
                     }
                 }
             }elseif($direction == "verti"){
                 $len = strlen($mot);
-                for($i=0; $i<$len; $i++){
-                    $posY += $i;
-                    if($posX == 8 && $posY == 8){
+                for($i=$posY; $i<($len + $posY); $i++){
+                    if($posX == 8 && $i== 8){
                         return true;
                     }
                 }
@@ -115,28 +111,31 @@
         }
 
         function Adjacent($mot, $posX, $posY, $direction){
-            if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY)->getLettre() != ""
-                || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
-                    return true;
-                }
-
             if($direction == "hori"){
-                $len = strlen($mot);
-                for($i=0; $i<$len; $i++){
-                    $posX += $i;
-                    if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY)->getLettre() != ""
-                        || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
+                if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
+                    return true; 
+                }
+                $len = strlen($mot) - 1;
+                for($i=$posX + 1; $i<($len + $posX); $i++){
+                    if($this->plateau->getCellules($i, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($i, $posY + 1)->getLettre() != ""){
                         return true;
                     }
+                }
+                if($this->plateau->getCellules($posX + $len, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX + $len + 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + $len, $posY + 1)->getLettre() != ""){
+                    return true; 
                 }
             }elseif($direction == "verti"){
-                $len = strlen($mot);
-                for($i=0; $i<$len; $i++){
-                    $posY += $i;
-                    if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY)->getLettre() != ""
-                        || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
+                if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX  + 1, $posY)->getLettre() != ""){
+                    return true; 
+                }
+                $len = strlen($mot) - 1;
+                for($i=$posX + 1; $i<($len + $posX); $i++){
+                    if( $this->plateau->getCellules($i - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($i + 1, $posY)->getLettre() != ""){
                         return true;
                     }
+                }
+                if($this->plateau->getCellules($posX - 1 , $posY + $len)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + $len + 1)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY + $len)->getLettre() != ""){
+                    return true; 
                 }
             }
 
@@ -146,22 +145,19 @@
         function emplaceMotDisponible($mot, $posX, $posY, $direction){
             if($direction == "hori"){
                 $len = strlen($mot);
-                for($i=0; $i<$len; $i++){
-                    $posX += $i;
-                    if($this->plateau->getCellules($posX, $posY)->getLettre() != ""){
+                for($i=$posX; $i<($len + $posX); $i++){
+                    if($this->plateau->getCellules($i, $posY)->getLettre() != ""){
                         return false;
                     }
                 }
             }elseif($direction == "verti"){
                 $len = strlen($mot);
-                for($i=0; $i<$len; $i++){
-                    $posY += $i;
-                    if($this->plateau->getCellules($posX, $posY)->getLettre() != ""){
+                for($i=$posY; $i<($len + $posY); $i++){
+                    if($this->plateau->getCellules($posX, $i)->getLettre() != ""){
                         return false;
                     }
                 }
             }
-
             return true;
         }
     }        

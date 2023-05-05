@@ -41,6 +41,14 @@
                 }
             }
         }
+
+        public function AjouterScore($lettre){
+            foreach($this->main as $index => $piece) {
+                if ($piece->get_lettre() == $lettre) {
+                    $this->score += $piece->get_valeur();
+                }
+            }
+        }
     }
 
 

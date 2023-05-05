@@ -120,7 +120,7 @@
                 <select name="direction">
                     <option value="">--Choissisez un sens--</option>
                     <option value="hori">Horizontale</option>
-                    <option value="verti">verticale</option>
+                    <option value="verti">Verticale</option>
                 </select>
                 <select name="posX">
                     <option value="">--Choissisez une PosX--</option>
