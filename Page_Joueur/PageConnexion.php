@@ -2,7 +2,7 @@
 
 require_once("connexionBDD.php");
 
-session_start(); 
+
 
 // Connexion à la base de données MySQL
 $pdo = new PDO("mysql:host=$servername;dbname=$BDDname", $nom_utilisateur, $motdepasse);
