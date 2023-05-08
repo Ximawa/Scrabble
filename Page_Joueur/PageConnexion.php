@@ -1,17 +1,30 @@
 <?php
 
 require_once("connexionBDD.php");
-session_start(); // Démarrage de la session
 
-// Vérifier si l'utilisateur est connecté (s'il y a des informations de session)
-if (!isset($_SESSION['id_utilisateur'])) {
-    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header('Location: PageConnexion.php');
-    exit;
+session_start(); 
+
+// Connexion à la base de données MySQL
+$pdo = new PDO("mysql:host=$servername;dbname=$BDDname", $nom_utilisateur, $motdepasse);
+
+// Vérification des informations de connexion
+if (isset($_POST['nom_joueur']) && isset($_POST['mdp'])) {
+    $username = $_POST['nom_joueur'];
+    $password = $_POST['mdp'];
+    
+    $query = "SELECT * FROM joueurs WHERE nom_joueur = :nom_joueur AND mdp = :mdp";
+    $statement = $bdd->prepare($query);
+    $statement->execute(['nom_joueur' => $username, 'mdp' => $password]);
+    
+    if ($statement->rowCount() > 0) {
+        // L'utilisateur est authentifié, rediriger vers la page d'accueil de l'application
+        header("Location: PageHome.php");
+        die();
+    } else {
+        // Les informations de connexion sont invalides, afficher un message d'erreur
+        $erreur = "Nom d'utilisateur ou mot de passe incorrect";
+    }
 }
-
-// Afficher les informations de l'utilisateur connecté
-echo 'Bienvenue, ' . $_SESSION['nom_utilisateur'] . ' !';
 ?>
 
 <!DOCTYPE html>
@@ -27,30 +40,24 @@ echo 'Bienvenue, ' . $_SESSION['nom_utilisateur'] . ' !';
 <body>
     <header>
         <img src="..\img\Logo_Epsi_Scrabble.png" alt="logo">
-        <div>
-            <button>
-                Connexion
-            </button>
-            <button>
-                creaction de compte
-            </button>
-        </div>
-
+        
+        
     </header>
 
     <main>
         <section class="container mt-2">
             <div class="text-white bg-dark p-2 rounded">
-                <div class="row">
-                    <p class="col">affichage de profil</p>
+                <div>
+                    <center>
+                    <form>
+                        <label for="nom">Nom d'utilisateur :</label>
+                        <input type="text" id="nom_joueur" name="nom"><br><br>
 
-                    <form method="post" action="" class="col">
-                        <input type="submit" name="Creaction de la partie" value="Creaction de la partie">
+                        <label for="motdepasse">Mot de passe :</label>
+                        <input type="password" id="motdepasse" name="motdepasse"><br><br>
+                        <input type="submit" value="connection">
                     </form>
-
-                    <form method="post" action="" class="col">
-                        <input type="submit" name="rejoindre la partie" value="rejoindre la partie">
-                    </form>
+                    </center>
                 </div>
                 
             </div>
