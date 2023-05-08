@@ -1,5 +1,6 @@
 <?php
 require_once("connexionBDD.php");
+session_start();
 
 $conn = new mysqli($servername, $nom_utilisateur, $motdepasse, $BDDname);
 
