@@ -1,6 +1,7 @@
 <?php
 
 require_once("connexionBDD.php");
+session_start();
 
 
 
@@ -9,18 +10,22 @@ $pdo = new PDO("mysql:host=$servername;dbname=$BDDname", $nom_utilisateur, $motd
 
 // Vérification des informations de connexion
 if (isset($_POST['nom']) && isset($_POST['motdepasse'])) {
+
     $username = $_POST['nom'];
     $password = $_POST['motdepasse'];
-    echo "<h1>test</h1>";
+
     $query = "SELECT * FROM joueurs WHERE nom_joueur = :nom_joueur AND mdp = :mdp";
     $statement = $pdo->prepare($query);
     $statement->execute(['nom_joueur' => $username, 'mdp' => $password]);
-    echo"test";
+
     if ($statement->rowCount() > 0) {
+        $joueur = $statement->fetch();	
+        $_SESSION['id_utilisateur'] = $joueur['Id'];
+        $_SESSION['nom_utilisateur'] = $joueur['nom_joueur'];
+
         // L'utilisateur est authentifié, rediriger vers la page d'accueil de l'application
-        echo"test";
-        header("Location: PageHome.php");
-        die();
+        header('Location: pageHome.php');
+		exit();
     } else {
 
         // Les informations de connexion sont invalides, afficher un message d'erreur
@@ -52,7 +57,7 @@ if (isset($_POST['nom']) && isset($_POST['motdepasse'])) {
             <div class="text-white bg-dark p-2 rounded">
                 <div>
                     <center>
-                    <form method="post" action="">
+                    <form  action="" method="post">
                         <label for="nom">Nom d'utilisateur :</label>
                         <input type="text" id="nom_joueur" name="nom"><br><br>
 
