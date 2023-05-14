@@ -84,9 +84,14 @@
 </head>
 <body>
     <header>
-        <section>         
-                <h1><img src="../img\Logo_Epsi_Scrabble.png" alt="LOGO du jeu">Scrabble</h1>
-        </section>      
+        
+        <section class="contenerLogo"> 
+            <a href="../index.php">        
+                <img class="logo" src="../img\Logo_Epsi_Scrabble.png" alt="LOGO du jeu">
+            </a>
+            <h1>Scrabble</h1>  
+        </section>
+           
     </header>
     <main>
         
@@ -117,7 +122,7 @@
         </div>
         <section class ="container-sm">
             <div class ="row">
-                <p class ="col">Nb de lettres restant dans la pioche : <?php echo $_SESSION['pioche']->nombrePieces(); ?></p> 
+                <p class ="col">Nombre de lettres restant dans la pioche : <?php echo $_SESSION['pioche']->nombrePieces(); ?></p> 
                 <div class = "col" id="main">
                     <?php
                         $joueur_en_cours = $_SESSION['joueur_en_cours'];

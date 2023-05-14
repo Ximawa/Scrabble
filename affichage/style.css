@@ -48,6 +48,10 @@ h1{
 
 #plateau{
     margin-top: 50px;
+    margin: 50 auto;
+    background-color: white;
+    width:70%;
+    border-radius: 3%;
 
 }
 #plateau input{
@@ -100,9 +104,31 @@ footer{
     display: flex;
     justify-content: center; /* Alignement horizontal au centre */
     align-items: center; /* Alignement vertical au centre */
-  }
+}
   
-  .linkFooter li {
+.linkFooter li {
     margin: 0 10px; /* Marge entre les éléments liens */
-  }
-  
+}
+
+.contenerLogo{
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    width: 80px;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    color: rgb(45, 101, 153) ;
+}

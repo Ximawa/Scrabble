@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <a href="./../index.php">
-            <img src="..\img\Logo_Epsi_Scrabble.png" alt="logo">
+            <img class ="logo" src="..\img\Logo_Epsi_Scrabble.png" alt="logo">
         </a>
        
     </header>

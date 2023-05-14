@@ -48,3 +48,7 @@ main{
         background-size: 100% auto;
     }
 }
+
+.logo{
+    width: 70px;
+}
