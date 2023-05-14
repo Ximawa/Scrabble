@@ -1,5 +1,6 @@
 footer{
     background-color: #AAA;
+    margin-bottom: 0%;
 }
 
 header{
@@ -51,22 +52,29 @@ main{
 
 .logo{
     width: 70px;
+    
 }
 
 .contenerLogo{
     display: flex;
     align-items: center;
-    
+    padding-top: 10px;
+    padding-left: 20px;
 }
 
 .space {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
 
 }
 
 body{
     background-image: url(../img/background.png);
+}
+
+p{
+    margin: 0;
 }
