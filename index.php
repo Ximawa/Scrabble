@@ -81,21 +81,7 @@
         <br>
         <br>
 
-        <p>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                Regles scrabbles
-            </button>
-        </p>
-        <div style="min-height: 60px;">
-            <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                <div class="card card-body" class="couleurtext" style="width: 300px;">
-                    <div class="couleurtext">
-                        regles sccrabbles
-                    </div>
-                </div>
-            </div>
-        </div>
+     
     </main>
 
     <footer>

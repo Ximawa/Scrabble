@@ -51,7 +51,7 @@ if (isset($_POST['nom']) && isset($_POST['motdepasse'])) {
 <body>
     <header>
         <a href="./../index.php">
-            <img class ="logo" src="..\img\Logo_Epsi_Scrabble.png" alt="logo">
+            <img class ="logoco" src="..\img\Logo_Epsi_Scrabble.png" alt="logo">
         </a>
 
     </header>
