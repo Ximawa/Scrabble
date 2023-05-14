@@ -14,8 +14,37 @@ li {
 a{
     text-decoration: none;
     color: black;
-}    
+}
+
+.colortext{
+    color: black;
+}
 
 a:hover{
-    color: aqua;
+    color: rgb(45, 101, 153) ;
+}
+
+
+main{
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    background-image: url('/img/back.jpg');
+    background-position: center center;
+    background-size: cover;
+    animation-name:back;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+@keyframes back{
+    0%{
+        background-size: 100% auto;
+    }
+    50%{
+        background-size: 120% auto;
+    }
+    100%{
+        background-size: 100% auto;
+    }
 }
