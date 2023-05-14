@@ -63,7 +63,7 @@ if (isset($_POST['nom']) && isset($_POST['motdepasse'])) {
 
                         <label for="motdepasse">Mot de passe :</label>
                         <input type="password" id="motdepasse" name="motdepasse"><br><br>
-                        <input type="submit" value="connection">
+                        <input type="submit" value="Ce connecter" class="btn btn-primary">
                     </form>
                     </center>
                 </div>

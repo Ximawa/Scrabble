@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="confmotdepasse">Confirmez le mot de passe :</label>
                     <input type="password" id="confmotdepasse" name="confmotdepasse"><br><br>
                     
-                    <input type="submit" value="S'inscrire">
+                    <input type="submit" value="S'inscrire" class="btn btn-primary">
                 </form>
                 </center>
                    
