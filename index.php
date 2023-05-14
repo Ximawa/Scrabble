@@ -13,16 +13,25 @@
 
 <body>
     <header>
-        <div class="contenerLogo">
-            <a href="./index.php">
-                <section>
-                    <img class="logo" src="img\Logo_Epsi_Scrabble.png" alt="logo">
-                </section>
-            </a>
-            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                <a href="Page_Joueur\PageConnexion.php" class="btn btn-primary">Connexion</a>
-                <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creaction de compte</a>
+        <div class="space">
+            <div class="contenerLogo">
+                <a href="./index.php">
+                    <section>
+                        <img class="logo" src="img\Logo_Epsi_Scrabble.png" alt="logo">
+                    </section>
+                </a>
+                
             </div>
+            <div class="space">
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                    <a href="Page_Joueur\PageConnexion.php" class="btn btn-primary">Connexion</a>
+                </div>
+                <div class="btn-group me-2" role="group" aria-label="Second group">
+                    <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creaction de compte</a>
+                    </div></div>
+            </div>
+                
         </div>
 
     </header>
