@@ -95,7 +95,7 @@
     </header>
     <main>
         
-        <div id="infosJoueurs">
+        <div class="main-joueur" id="infosJoueurs">
             <div>
                 <?php echo $_SESSION['joueur1']->nom ?>
                 <?php echo $_SESSION['joueur1']->score ?>
@@ -105,7 +105,7 @@
                 <?php echo $_SESSION['joueur2']->score ?>
             </div>
         </div>
-        <div>Tour de <?php echo $_SESSION['joueur_en_cours']->nom ?></div>
+        <div class ="main-joueur">Tour de <?php echo $_SESSION['joueur_en_cours']->nom ?></div>
         <div id="plateau">
             <?php
                 $game = $_SESSION['game'];
@@ -126,7 +126,7 @@
                 <div class = "col" id="main">
                     <?php
                         $joueur_en_cours = $_SESSION['joueur_en_cours'];
-                        echo '<div>Main de '.$joueur_en_cours->nom.'</div>';
+                        echo '<div class="main-joueur">Main de '.$joueur_en_cours->nom.'</div>';
                         foreach($joueur_en_cours->main as $piece){
                             echo "<input type=\"button\" value=\"". $piece->lettre."\"  />";
                         }
