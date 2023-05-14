@@ -53,12 +53,12 @@ main{
 .logo{
     width: 70px;
     
+    
 }
 
 .contenerLogo{
     display: flex;
     align-items: center;
-    padding-top: 10px;
     padding-left: 20px;
 }
 
@@ -69,6 +69,11 @@ main{
     padding-bottom: 20px;
     padding-right: 20px;
 
+}
+
+.space2{
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 body{
