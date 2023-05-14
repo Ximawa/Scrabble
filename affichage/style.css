@@ -38,7 +38,7 @@ input[type="submit"]:hover {
 }
 
 header{
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgb(128,185,134);
 }
 
 h1{
@@ -76,13 +76,7 @@ body{
     text-align: center;
     margin: 0;
     min-height: 100vh;
-    background-image: url('img/background.png');
-    background-position: center center;
-    background-size: cover;
-    animation-name:back;
-    animation-duration: 20s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+    background-color: rgb(229,229,229);
 }
 
 @keyframes back{
@@ -96,3 +90,19 @@ body{
         background-size: 100% auto;
     }
 }
+
+footer{
+    height: 100px;
+    background-color: rgb(128,185,134);
+}
+
+.linkFooter {
+    display: flex;
+    justify-content: center; /* Alignement horizontal au centre */
+    align-items: center; /* Alignement vertical au centre */
+  }
+  
+  .linkFooter li {
+    margin: 0 10px; /* Marge entre les éléments liens */
+  }
+  

@@ -174,12 +174,12 @@
         
         <p>SCORE BOARD</p>
 
-        <section class="footer">
+        <div class="linkFooter">
             <li><a href="">Contact</a></li>
             <li><a href="">Conditions d'utilisation</a></li>
             <li><a href="">Credits</a></li>
             <li><a href="">Paramètres de confidentialité</a></li>
-        </section>
+        </div>
         
         <p>Le propriétaire de ce site n’est pas responsable du contenu généré par l’utilisateur (mot utiliser, messages, noms d’utilisateur)</p>
     </footer>  

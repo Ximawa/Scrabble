@@ -10,7 +10,9 @@
 </head> 
 <body>
 <header>
-        <img src="img\Logo_Epsi_Scrabble.png" alt="logo">
+        <a href="./index.php">
+            <img src="img\Logo_Epsi_Scrabble.png" alt="logo">
+        </a>    
         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                 <a href="Page_Joueur\PageConnexion.php" class="btn btn-primary">Connexion</a>
                 <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creaction de compte</a>
