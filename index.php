@@ -13,14 +13,16 @@
 
 <body>
     <header>
-        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+        <div class="contenerLogo">
             <a href="./index.php">
-                <section class="contenerLogo">
+                <section>
                     <img class="logo" src="img\Logo_Epsi_Scrabble.png" alt="logo">
                 </section>
             </a>
-            <a href="Page_Joueur\PageConnexion.php" class="btn btn-primary">Connexion</a>
-            <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creaction de compte</a>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                <a href="Page_Joueur\PageConnexion.php" class="btn btn-primary">Connexion</a>
+                <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creaction de compte</a>
+            </div>
         </div>
 
     </header>

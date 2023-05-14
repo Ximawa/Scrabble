@@ -52,3 +52,8 @@ main{
 .logo{
     width: 70px;
 }
+
+.contenerLogo{
+    display: flex;
+    align-items: center;
+}
