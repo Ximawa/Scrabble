@@ -54,6 +54,7 @@ h1{
     border-radius: 3%;
 
 }
+
 #plateau input{
     text-align: center;
     width: 60px;
@@ -75,6 +76,21 @@ h1{
     background-color: #AAA;
     transition: all 0.3s ease;
 }
+
+#plateau #lettreDouble {
+    background-color: lightblue;
+}
+
+#plateau #lettreTriple {
+    background-color: darkblue
+}
+#plateau #motDouble {
+    background-color: lightpink;
+}
+#plateau #motTriple {
+    background-color: red;
+}
+
 
 body{
     text-align: center;
@@ -140,3 +156,4 @@ a:hover{
 .main-joueur {
     color: white;
 }
+

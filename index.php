@@ -68,7 +68,7 @@
                 <p>Multijoueur</p>
                 <div class="row">
                     <form method="post" action="" class="col">
-                        <input type="submit" name="Creation de la partie" value="Creaction de la partie"
+                        <input type="submit" name="Creation de la partie" value="Creation de la partie"
                             class="btn btn-primary">
                     </form>
 
