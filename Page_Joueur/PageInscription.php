@@ -15,14 +15,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mdp = $_POST["motdepasse"];
     $confmdp = $_POST["confmotdepasse"];
     
+    
+
     // Vérification si le mot de passe correspond à la confirmation
     if ($mdp != $confmdp) {
         echo "Le mot de passe et la confirmation ne correspondent pas.";
     } else {
+
+        $mdpcrypter = password_hash($mdp, PASSWORD_BCRYPT);
+        
         // Enregistrement des données dans la table "utilisateurs"
-        $sql = "INSERT INTO joueurs (nom_joueur, mdp) VALUES ('$nom', '$mdp')";
+        $sql = "INSERT INTO joueurs (nom_joueur, mdp) VALUES ('$nom', '$mdpcrypter')";
         if ($conn->query($sql) === TRUE) {
             echo "Inscription réussie.";
+            header('Location: PageConnexion.php');
         } else {
             echo "Erreur lors de l'inscription : " . $conn->error;
         }

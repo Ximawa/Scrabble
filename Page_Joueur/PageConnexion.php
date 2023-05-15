@@ -18,20 +18,23 @@ if (isset($_POST['nom']) && isset($_POST['motdepasse'])) {
     $statement = $pdo->prepare($query);
     $statement->execute(['nom_joueur' => $username, 'mdp' => $password]);
 
-    if ($statement->rowCount() > 0) {
-        $joueur = $statement->fetch();
-        $_SESSION['id_utilisateur'] = $joueur['Id'];
-        $_SESSION['nom_utilisateur'] = $joueur['nom_joueur'];
+    if (password_verify($password,$mdpcrypter)){
+        if ($statement->rowCount() > 0) {
+            $joueur = $statement->fetch();
+            $_SESSION['id_utilisateur'] = $joueur['Id'];
+            $_SESSION['nom_utilisateur'] = $joueur['nom_joueur'];
 
-        // L'utilisateur est authentifié, rediriger vers la page d'accueil de l'application
-        header('Location: ../index.php');
-        exit();
-    } else {
+            // L'utilisateur est authentifié, rediriger vers la page d'accueil de l'application
+            header('Location: ../index.php');
+            exit();
+        } else {
 
-        // Les informations de connexion sont invalides, afficher un message d'erreur
-        $erreur = "Nom d'utilisateur ou mot de passe incorrect";
-        echo $erreur;
+            // Les informations de connexion sont invalides, afficher un message d'erreur
+            $erreur = "Nom d'utilisateur ou mot de passe incorrect";
+            echo $erreur;
+        }
     }
+    
 }
 ?>
 
