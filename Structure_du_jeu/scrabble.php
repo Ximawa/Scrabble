@@ -241,7 +241,6 @@
                 if($i >= 0 && $i <= 15 && $this->plateau->getCellules($posY, $i)->getLettre() == "") {
                     $cases[] = array($i, $posY);
                 } else {
-                    var_dump($this->plateau->getCellules($posY, $i));
                     $dispo = false;
                 }
             }
