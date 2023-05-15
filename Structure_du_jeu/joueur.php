@@ -3,7 +3,7 @@
 
     class Joueur {
         // Properties
-        public $score,$nom;
+        public $score,$nom,$nbMotJouer;
         public $main;
         
         // Methods
@@ -11,6 +11,7 @@
         public function __construct($nom) {
             $this->nom = $nom;
             $this->score = 0;
+            $this->nbMotJouer = 0;
             $this->main = array();
         }
 

@@ -1,10 +1,18 @@
 <?php 
+    require_once("../Page_joueur/connexionBDD.php");
     require_once('joueur.php');
     require_once('scrabble.php');
 
     session_start();
 
     if(isset($_POST['start'])){
+        $sql = "INSERT INTO partie (date_partie) VALUES (NOW())";
+        if($connb->query($sql) == TRUE){
+            $id_partie = $connb->lastInsertId();
+            $_SESSION['id_partie'] = $id_partie;
+        }else{
+            echo "Error while adding partie to database";
+        }
         
         $game = new Scrabble();
         $pioche = new Pioche();
