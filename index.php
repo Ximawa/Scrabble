@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +27,12 @@
                 
             </div>
             <div class="space2">
+            <?php 
+                if(isset($_SESSION['id_utilisateur']) && isset($_SESSION['nom_utilisateur'])){
+                    echo '<div> Connecte en tant que '.$_SESSION['nom_utilisateur'].'</div>';
+
+                }else{
+            ?>
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group me-2" role="group" aria-label="First group">
                     <a href="Page_Joueur\PageConnexion.php" class="btn btn-primary">Connexion</a>
@@ -31,6 +41,7 @@
                     <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creaction de compte</a>
                     </div></div>
             </div>
+            <?php } ?>
                 
         </div>
 
@@ -62,17 +73,16 @@
                 <p>Local</p>
                 <div class="row">
                     <form method="post" action="Structure_du_jeu/game.php" class="col" class="form-label">
+                        <?php if ( isset($_SESSION['id_utilisateur'])){
+                            echo '<input type="text" name="joueur1" value='.$_SESSION['nom_utilisateur'].' readonly>';
+                        } else { ?>
                         <input type="text" name="joueur1" placeholder="Nom joueur 1">
-                    </form>
-                    <form method="post" action="Structure_du_jeu/game.php" class="col">
+                        <?php } ?>
                         <input type="text" name="joueur2" placeholder="Nom joueur 2">
-                    </form>
                     <br>
                     <br>
-
                 </div>
                 <div class="row">
-                    <form method="post" action="Structure_du_jeu/game.php">
                         <input type="submit" name="start" value="Lancer Partie" class="btn btn-primary">
                     </form>
                 </div>
