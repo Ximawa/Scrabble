@@ -127,7 +127,7 @@
                 foreach($game->plateau->cellules as $line){
                     foreach($line as $cell){
             ?>
-                        <input type="text" value="<?php echo $cell->getLettre()?>" id="<?php echo $cell->getBonus()?>"  readonly/>
+                        <input type="text" value="<?php echo $cell->getLettre()?>" id="<?php echo $cell->getBonus()?>" placeholder="<?php echo $cell->getPos()?>"  readonly/>
             <?php
                     }
                     echo "<br>";

@@ -29,22 +29,23 @@
         }
 
         function poserMot($mot, $joueur, $direction, $posX, $posY, $pioche){
+            $mot = strtoupper($mot);
             // Check mot compose de la main
             if($this->verifMotComposition($mot, $joueur->main) == true) {
                 // Check if mot valide dictionnaire
                 if($this->verifMotValide($mot)){
                     // Check if premier mot passe par case central
                     if(count($this->motJouer) == 0){
-                        if($this->passeParCentre($mot,$posX,$posY,$direction) == false){
+                        if($this->passeParCentre($mot,$posY,$posX,$direction) == false){
                             echo "Le premier mot doit passer par le centre";
                             return false;
                         }
                     }else{
-                        if($this->Adjacent($mot, $posX, $posY, $direction) == false){
+                        if($this->Adjacent($mot, $posY, $posX, $direction) == false){
                             echo "Les mots doivent être adjacent a un mot existant";
                             return false;
                         }
-                        if($this->emplaceMotDisponible($mot, $posX, $posY, $direction) == false){
+                        if($this->emplaceMotDisponible($mot,  $posY, $posX, $direction) == false){
                             echo "Vous ne pouvez pas poser un mot par dessus un mot existant";
                             return false;
                         }
@@ -53,7 +54,7 @@
                     $longueur_mot = strlen($mot);
                     if ($direction == "hori") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
-                            $this->plateau->cellules[$posY][$posX + $i]->setLettre($mot[$i]);
+                            $this->plateau->cellules[$posX][$posY + $i]->setLettre($mot[$i]);
                             $joueur->AjouterScore($mot[$i]);
                             $joueur->RetirerPiece($mot[$i]);     
                         }
@@ -63,7 +64,7 @@
                         return true;
                     } elseif ($direction == "verti") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
-                            $this->plateau->cellules[$posY + $i][$posX]->setLettre($mot[$i]);
+                            $this->plateau->cellules[$posX + $i][$posY]->setLettre($mot[$i]);
                             $joueur->AjouterScore($mot[$i]);
                             $joueur->RetirerPiece($mot[$i]);
                         }
@@ -112,36 +113,99 @@
             return false;
         }
 
+        // function Adjacent($mot, $posX, $posY, $direction){
+        //     if($direction == "hori"){
+        //         if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
+        //             return true; 
+        //         }
+        //         $len = strlen($mot) - 1;
+        //         for($i=$posX + 1; $i<($len + $posX); $i++){
+        //             if($this->plateau->getCellules($i, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($i, $posY + 1)->getLettre() != ""){
+        //                 return true;
+        //             }
+        //         }
+        //         if($this->plateau->getCellules($posX + $len, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX + $len + 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + $len, $posY + 1)->getLettre() != ""){
+        //             return true; 
+        //         }
+        //     }elseif($direction == "verti"){
+        //         if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX  + 1, $posY)->getLettre() != ""){
+        //             return true; 
+        //         }
+        //         $len = strlen($mot) - 1;
+        //         for($i=$posX + 1; $i<($len + $posX); $i++){
+        //             if( $this->plateau->getCellules($i - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($i + 1, $posY)->getLettre() != ""){
+        //                 return true;
+        //             }
+        //         }
+        //         if($this->plateau->getCellules($posX - 1 , $posY + $len)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + $len + 1)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY + $len)->getLettre() != ""){
+        //             return true; 
+        //         }
+        //     }
+
+        //     return false;
+        // }
+
         function Adjacent($mot, $posX, $posY, $direction){
-            if($direction == "hori"){
-                if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + 1)->getLettre() != ""){
-                    return true; 
-                }
-                $len = strlen($mot) - 1;
-                for($i=$posX + 1; $i<($len + $posX); $i++){
-                    if($this->plateau->getCellules($i, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($i, $posY + 1)->getLettre() != ""){
-                        return true;
+            $len = strlen($mot);
+            $cases = array();
+            $motExist = false;
+
+            if($direction == "hori") {
+                // Recherche d'un mot existant dans la même ligne
+                for($i = $posX - 1; $i <= $posX + $len; $i++) {
+                    if($i >= 0 && $i < 15 && $this->plateau->getCellules($posY,$i)->getLettre() != "") {
+                        $motExist = true;
+                        break;
                     }
                 }
-                if($this->plateau->getCellules($posX + $len, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX + $len + 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX + $len, $posY + 1)->getLettre() != ""){
-                    return true; 
-                }
-            }elseif($direction == "verti"){
-                if($this->plateau->getCellules($posX - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($posX, $posY - 1)->getLettre() != "" || $this->plateau->getCellules($posX  + 1, $posY)->getLettre() != ""){
-                    return true; 
-                }
-                $len = strlen($mot) - 1;
-                for($i=$posX + 1; $i<($len + $posX); $i++){
-                    if( $this->plateau->getCellules($i - 1, $posY)->getLettre() != "" || $this->plateau->getCellules($i + 1, $posY)->getLettre() != ""){
-                        return true;
+                
+                // Recherche des cases utilisées par le mot
+                for($i = $posX; $i < $posX + $len; $i++) {
+                    if($i >= 0 && $i < 15) {
+                        $cases[] = array($i, $posY);
                     }
                 }
-                if($this->plateau->getCellules($posX - 1 , $posY + $len)->getLettre() != "" || $this->plateau->getCellules($posX, $posY + $len + 1)->getLettre() != "" || $this->plateau->getCellules($posX + 1, $posY + $len)->getLettre() != ""){
-                    return true; 
+            } else {
+                // Recherche d'un mot existant dans la même colonne
+                for($i = $posY - 1; $i <= $posY + $len; $i++) {
+                    if($i >= 0 && $i < 15 && $this->plateau->getCellules($i , $posX)->getLettre() != "") {
+                        $motExist = true;
+                        break;
+                    }
+                }
+
+                // Recherche des cases utilisées par le mot
+                for($i = $posY; $i < $posY + $len; $i++) {
+                    if($i >= 0 && $i < 15) {
+                        $cases[] = array($posX, $i);
+                    }
                 }
             }
 
-            return false;
+            // Vérification des cases adjacentes
+            foreach($cases as $case) {
+                $x = $case[0];
+                $y = $case[1];
+                
+                if($x > 0 && $this->plateau->getCellules($y, $x - 1)->getLettre() != "") {
+                    return true;
+                }
+                
+                if($x < 14 && $this->plateau->getCellules($y, $x + 1)->getLettre() != "") {
+                    return true;
+                }
+                
+                if($y > 0 && $this->plateau->getCellules($y - 1, $x)->getLettre() != "") {
+                    return true;
+                }
+                
+                if($y < 14 && $this->plateau->getCellules($y + 1, $x)->getLettre() != "") {
+                    return true;
+                }
+            }
+            
+            // Retourne false si aucun mot adjacent n'a été trouvé
+            return $motExist;
         }
 
         function emplaceMotDisponible($mot, $posX, $posY, $direction){

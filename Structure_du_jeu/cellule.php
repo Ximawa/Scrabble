@@ -11,6 +11,10 @@
             $this->lettre = "";
         }
 
+        public function getPos() {
+            return $this->posX."/".$this->posY;
+        }
+
         public function getPosX() {
             return $this->posX;
         }
