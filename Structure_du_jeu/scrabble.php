@@ -58,6 +58,7 @@
                             $joueur->RetirerPiece($mot[$i]);     
                         }
                         $this->motJouer[] = $mot;
+                        $joueur->nbMotJouer += 1;
                         $joueur->Piocher($pioche);
                         return true;
                     } elseif ($direction == "verti") {
@@ -67,6 +68,7 @@
                             $joueur->RetirerPiece($mot[$i]);
                         }
                         $this->motJouer[] = $mot;
+                        $joueur->nbMotJouer += 1;
                         $joueur->Piocher($pioche);
                         return true;
                     }
