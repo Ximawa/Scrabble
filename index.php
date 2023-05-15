@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if(isset($_POST['deco'])){
+        // Suppression des informations en session
+        session_unset();
+        session_destroy();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +36,16 @@
             <?php 
                 if(isset($_SESSION['id_utilisateur']) && isset($_SESSION['nom_utilisateur'])){
                     echo '<div> Connecte en tant que '.$_SESSION['nom_utilisateur'].'</div>';
-
+            ?>
+                    <form method="post" action="Page_Joueur/StatJoueur.php" class="col">
+                        <input type="submit" name="profil" value="Voir profil"
+                                class="btn btn-primary">
+                    </form>
+                    <form method="post" action="" class="col">
+                        <input type="submit" name="deco" value="Deconnexion"
+                                class="btn btn-primary">
+                    </form>
+            <?php
                 }else{
             ?>
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -38,7 +53,7 @@
                     <a href="Page_Joueur\PageConnexion.php" class="btn btn-primary">Connexion</a>
                 </div>
                 <div class="btn-group me-2" role="group" aria-label="Second group">
-                    <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creaction de compte</a>
+                    <a href="Page_Joueur\PageInscription.php" class="btn btn-primary">Creation de compte</a>
                     </div></div>
             </div>
             <?php } ?>
@@ -52,14 +67,8 @@
             <div class="text-white bg-dark p-2 rounded">
                 <p>Multijoueur</p>
                 <div class="row">
-                    <?php if(isset($_SESSION['id_utilisateur'])){ ?>
-                        <form method="post" action="Page_Joueur/StatJoueur.php" class="col">
-                            <input type="submit" name="profil" value="Voir profil"
-                                class="btn btn-primary">
-                        </form>
-                    <?php } ?>
                     <form method="post" action="" class="col">
-                        <input type="submit" name="Creaction de la partie" value="Creaction de la partie"
+                        <input type="submit" name="Creation de la partie" value="Creaction de la partie"
                             class="btn btn-primary">
                     </form>
 
