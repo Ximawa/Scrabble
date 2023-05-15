@@ -236,7 +236,6 @@
         // Recherche des cases utilisées par le mot
         if($direction == "hori") {
             for($i = $posX; $i < $posX + $len; $i++) {
-                var_dump($this->plateau->getCellules($posY, $i));
                 if($i >= 0 && $i < 15 && $this->plateau->getCellules($posY, $i)->getLettre() == "") {
                     $cases[] = array($i, $posY);
                 } else {
@@ -245,7 +244,6 @@
             }
         } else {
             for($i = $posY; $i < $posY + $len; $i++) {
-                var_dump($this->plateau->getCellules($i, $posX));
                 if($i >= 0 && $i < 15 && $this->plateau->getCellules($i, $posX)->getLettre() == "") {
                     $cases[] = array($posX, $i);
                 } else {
