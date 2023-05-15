@@ -41,14 +41,14 @@
                             return false;
                         }
                     }else{
-                        if($this->Adjacent($mot, $posY, $posX, $direction) == false){
-                            echo "Les mots doivent être adjacent a un mot existant";
-                            return false;
-                        }
                         if($this->emplaceMotDisponible($mot,  $posY, $posX, $direction) == false){
                             echo "Vous ne pouvez pas poser un mot par dessus un mot existant";
                             return false;
+                        }elseif($this->Adjacent($mot, $posY, $posX, $direction) == false){
+                            echo "Les mots doivent être adjacent a un mot existant";
+                            return false;
                         }
+                        
                     }
                     // Poser mot 
                     $longueur_mot = strlen($mot);
@@ -153,7 +153,7 @@
             if($direction == "hori") {
                 // Recherche d'un mot existant dans la même ligne
                 for($i = $posX - 1; $i <= $posX + $len; $i++) {
-                    if($i >= 0 && $i < 15 && $this->plateau->getCellules($posY,$i)->getLettre() != "") {
+                    if($i >= 1 && $i < 15 && $this->plateau->getCellules($posY,$i)->getLettre() != "") {
                         $motExist = true;
                         break;
                     }
@@ -168,7 +168,7 @@
             } else {
                 // Recherche d'un mot existant dans la même colonne
                 for($i = $posY - 1; $i <= $posY + $len; $i++) {
-                    if($i >= 0 && $i < 15 && $this->plateau->getCellules($i , $posX)->getLettre() != "") {
+                    if($i >= 1 && $i < 15 && $this->plateau->getCellules($i , $posX)->getLettre() != "") {
                         $motExist = true;
                         break;
                     }
@@ -187,7 +187,7 @@
                 $x = $case[0];
                 $y = $case[1];
                 
-                if($x > 0 && $this->plateau->getCellules($y, $x - 1)->getLettre() != "") {
+                if($x > 1 && $this->plateau->getCellules($y, $x - 1)->getLettre() != "") {
                     return true;
                 }
                 
@@ -195,7 +195,7 @@
                     return true;
                 }
                 
-                if($y > 0 && $this->plateau->getCellules($y - 1, $x)->getLettre() != "") {
+                if($y > 1 && $this->plateau->getCellules($y - 1, $x)->getLettre() != "") {
                     return true;
                 }
                 
@@ -208,24 +208,55 @@
             return $motExist;
         }
 
-        function emplaceMotDisponible($mot, $posX, $posY, $direction){
-            if($direction == "hori"){
-                $len = strlen($mot);
-                for($i=$posX; $i<($len + $posX); $i++){
-                    if($this->plateau->getCellules($i, $posY)->getLettre() != ""){
-                        return false;
-                    }
-                }
-            }elseif($direction == "verti"){
-                $len = strlen($mot);
-                for($i=$posY; $i<($len + $posY); $i++){
-                    if($this->plateau->getCellules($posX, $i)->getLettre() != ""){
-                        return false;
-                    }
+    //     function emplaceMotDisponible($mot, $posX, $posY, $direction){
+    //         if($direction == "hori"){
+    //             $len = strlen($mot);
+    //             for($i=$posX; $i<($len + $posX); $i++){
+    //                 if($this->plateau->getCellules($i, $posY)->getLettre() != ""){
+    //                     return false;
+    //                 }
+    //             }
+    //         }elseif($direction == "verti"){
+    //             $len = strlen($mot);
+    //             for($i=$posY; $i<($len + $posY); $i++){
+    //                 if($this->plateau->getCellules($posX, $i)->getLettre() != ""){
+    //                     return false;
+    //                 }
+    //             }
+    //         }
+    //         return true;
+    //     }
+    // }        
+    
+    function emplaceMotDisponible($mot, $posX, $posY, $direction) {
+        $len = strlen($mot);
+        $cases = array();
+        $dispo = true;
+        
+        // Recherche des cases utilisées par le mot
+        if($direction == "hori") {
+            for($i = $posX; $i < $posX + $len; $i++) {
+                var_dump($this->plateau->getCellules($posY, $i));
+                if($i >= 0 && $i < 15 && $this->plateau->getCellules($posY, $i)->getLettre() == "") {
+                    $cases[] = array($i, $posY);
+                } else {
+                    $dispo = false;
                 }
             }
-            return true;
+        } else {
+            for($i = $posY; $i < $posY + $len; $i++) {
+                var_dump($this->plateau->getCellules($i, $posX));
+                if($i >= 0 && $i < 15 && $this->plateau->getCellules($i, $posX)->getLettre() == "") {
+                    $cases[] = array($posX, $i);
+                } else {
+                    $dispo = false;
+                }
+            }
         }
-    }        
+        
+        // Retourne les cases utilisées par le mot si elles sont toutes vides
+        return $dispo;
+        }
+    }
 
 ?>
