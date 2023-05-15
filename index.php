@@ -96,8 +96,11 @@
                     <br>
                 </div>
                 <div class="row">
+                    <div class="taille">
                         <input type="submit" name="start" value="Lancer Partie" class="btn btn-primary">
                     </form>
+                    </div>
+                        
                 </div>
             </div>
         </section>
