@@ -52,8 +52,12 @@
             <div class="text-white bg-dark p-2 rounded">
                 <p>Multijoueur</p>
                 <div class="row">
-                    <p class="col">affichage de profil</p>
-
+                    <?php if(isset($_SESSION['id_utilisateur'])){ ?>
+                        <form method="post" action="Page_Joueur/StatJoueur.php" class="col">
+                            <input type="submit" name="profil" value="Voir profil"
+                                class="btn btn-primary">
+                        </form>
+                    <?php } ?>
                     <form method="post" action="" class="col">
                         <input type="submit" name="Creaction de la partie" value="Creaction de la partie"
                             class="btn btn-primary">

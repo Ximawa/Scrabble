@@ -16,12 +16,19 @@
     }else{
         echo "Error while adding statpartie to database";
     }
+    
 
+    if($_SESSION['joueur1']->score > $_SESSION['joueur2']->score){
+        echo "<br>";
+        echo $_SESSION['joueur1']->nom." gagne la partie avec un score de ".$_SESSION['joueur1']->score;
+        echo "<br>";
+        echo $_SESSION['joueur2']->nom." perd avec un score de ".$_SESSION['joueur2']->score;
+    }else{
+        echo "<br>";
+        echo $_SESSION['joueur2']->nom." gagne la partie avec un score de ".$_SESSION['joueur2']->score;
+        echo "<br>";
+        echo $_SESSION['joueur1']->nom." perd avec un score de ".$_SESSION['joueur1']->score;
+    }
 
-    echo $_SESSION['joueur1']->nom;
-    echo $_SESSION['joueur1']->score;
-
-    echo $_SESSION['joueur2']->nom;
-    echo $_SESSION['joueur2']->score;
 
 ?>
