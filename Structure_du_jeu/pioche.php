@@ -108,8 +108,6 @@
                 new Piece('X', 10),
                 new Piece('Y', 10),
                 new Piece('Z', 10),
-                new Piece(' ', 0),
-                new Piece(' ', 0)
             );
         }
         

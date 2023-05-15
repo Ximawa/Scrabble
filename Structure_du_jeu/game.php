@@ -69,6 +69,13 @@
                 $_SESSION['joueur_en_cours'] = $_SESSION['joueur1'];
             }
         }
+
+        if($pioche->nombrePieces() <= 3){
+
+            echo "fin de partie";
+            // header('Location: statPartie.php');
+            // exit();
+        }
     }
 
 
