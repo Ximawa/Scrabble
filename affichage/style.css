@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Roboto', sans-serif;
 }
 
@@ -9,17 +9,17 @@ input[type="submit"] {
     cursor: pointer;
     background-color: #EA2;
     border: solid 1px #EA2;
-    color:#000;
+    color: #000;
     display: inline-block;
     margin: 4px 2px;
 }
 
 input[type="submit"]:hover {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-    color:#FFF;
+    color: #FFF;
 }
 
-#main input{
+#main input {
     width: 60px;
     height: 40px;
     font-size: 14pt;
@@ -28,7 +28,7 @@ input[type="submit"]:hover {
     border: solid 1px black;
 }
 
-#selection input{
+#selection input {
     width: 60px;
     height: 40px;
     font-size: 14pt;
@@ -37,25 +37,24 @@ input[type="submit"]:hover {
     border: solid 1px #EA2;
 }
 
-header{
+header {
     background-color: #AAA;
 }
 
-h1{
+h1 {
     color: #EA2;
-    
+
 }
 
-#plateau{
+#plateau {
     margin-top: 50px;
     margin: 50 auto;
     background-color: white;
-    width:70%;
+    width: 70%;
     border-radius: 3%;
-
 }
 
-#plateau input{
+#plateau input {
     text-align: center;
     width: 60px;
     height: 40px;
@@ -70,17 +69,16 @@ h1{
     transition: all 0.3s ease;
 }
 
-#plateau input:hover{
+#plateau input:hover {
     transform: scale(1.2);
     color: #FFF;
     background-color: #AAA;
     transition: all 0.3s ease;
 }
 
-#plateau input::placeholder{
+#plateau input::placeholder {
     opacity: 0.3;
 }
-
 
 #plateau #lettreDouble {
     background-color: lightblue;
@@ -89,59 +87,67 @@ h1{
 #plateau #lettreTriple {
     background-color: darkblue
 }
+
 #plateau #motDouble {
     background-color: lightpink;
 }
+
 #plateau #motTriple {
     background-color: red;
 }
 
-
-body{
+body {
     text-align: center;
     margin: 0;
     min-height: 100vh;
-    background-image: url("../img/background.png") ;
+    background-image: url("../img/background.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-@keyframes back{
-    0%{
+@keyframes back {
+    0% {
         background-size: 100% auto;
     }
-    50%{
+
+    50% {
         background-size: 120% auto;
     }
-    100%{
+
+    100% {
         background-size: 100% auto;
     }
 }
 
-footer{
+footer {
     height: 100px;
-    background-color:#AAA;
-}
-p{
-    color: white;
-}
-.linkFooter {
-    display: flex;
-    justify-content: center; /* Alignement horizontal au centre */
-    align-items: center; /* Alignement vertical au centre */
-}
-  
-.linkFooter li {
-    margin: 0 10px; /* Marge entre les éléments liens */
+    background-color: #AAA;
 }
 
-.contenerLogo{
+p {
+    color: white;
+}
+
+.linkFooter {
+    display: flex;
+    justify-content: center;
+    /* Alignement horizontal au centre */
+    align-items: center;
+    /* Alignement vertical au centre */
+}
+
+.linkFooter li {
+    margin: 0 10px;
+    /* Marge entre les éléments liens */
+}
+
+.contenerLogo {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.logo{
+.logo {
     width: 80px;
     padding-top: 20px;
 }
@@ -150,29 +156,34 @@ li {
     list-style-type: none;
 }
 
-
-a{
+a {
     text-decoration: none;
     color: black;
 }
 
-a:hover{
-    color: rgb(45, 101, 153) ;
+a:hover {
+    color: rgb(45, 101, 153);
 }
 
-.main-joueur {
+#tour_joueur {
     color: white;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
+#main_joueur {
+    color: white;
+    font-size: 20px;
 
-.score_et_nom{
+}
+
+.score_et_nom {
     display: flex;
     flex-direction: column;
     text-align: start;
     color: white;
     font-size: 22px;
     padding: 80%;
-
 }
 
 .parents {
@@ -181,30 +192,45 @@ a:hover{
 }
 
 #enfant1 {
-    padding: 50px;
+    padding: 15px;
     width: auto;
     background-color: #AAA;
     justify-self: flex-start;
     margin-top: 100px;
     margin-left: 100px;
+    margin-bottom: auto;
     border-radius: 10%;
-    background-color: red;
 }
 
 #enfant2 {
     margin-top: 50px;
     justify-self: flex-end;
-    background-color: blue;
-    margin-right: 150px;
-
-
+    margin-right: 315px;
+    width: 890px;
 }
 
-#scoreboard{
+#scoreboard {
     text-decoration: underline;
 }
 
-.joueur_score{
+.joueur_score {
     display: flex;
     align-items: center;
+}
+
+.les_boutons_alignés {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+}
+
+#main {
+    background-color: #AAA;
+    padding-bottom: 10px;
+}
+
+#stock {
+    font-size: 20px;
+    margin-top: 25px;
 }
