@@ -26,8 +26,9 @@
         <div class="space">
             <div class="contenerLogo">
                 <a href="./index.php">
-                    <section>
+                    <section class="space">
                         <img class="logo" src="img\Logo_Epsi_Scrabble.png" alt="logo">
+                        <h1>Scrabble</h1>
                     </section>
                 </a>
                 

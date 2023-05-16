@@ -1,7 +1,7 @@
 <?php
 
 // Informations de connexion à la base de données
-$servername = "localhost:3308";
+$servername = "localhost:3302";
 $nom_utilisateur = "root";
 $motdepasse = "";
 $BDDname = "projet_scrabble";
