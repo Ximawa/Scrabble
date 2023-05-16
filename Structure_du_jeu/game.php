@@ -111,18 +111,58 @@
            
     </header>
     <main>
-        
-        <div class="main-joueur" id="infosJoueurs">
-            <div>
-                <?php echo $_SESSION['joueur1']->nom ?>
-                <?php echo $_SESSION['joueur1']->score ?>
+        <!-- Nom et score des joueurs  -->
+        <div class=parents>
+            <div class="score_et_nom" id="enfant1">
+                <div>
+                    <?php echo $_SESSION['joueur1']->nom ?>
+                    <?php echo $_SESSION['joueur1']->score ?>
+                </div>
+                <div>
+                    <?php echo $_SESSION['joueur2']->nom ?>
+                    <?php echo $_SESSION['joueur2']->score ?>
+                </div>
             </div>
-            <div>
-                <?php echo $_SESSION['joueur2']->nom ?>
-                <?php echo $_SESSION['joueur2']->score ?>
+            <div id="enfant2">
+                <!-- annonce a qui est le tour -->
+                <div class="main-joueur">Tour de
+                    <?php echo $_SESSION['joueur_en_cours']->nom ?>
+                </div>
+
+                <!-- annonce le nombre de lettre de la pioche -->
+                <section class="container-sm">
+                    <div class="row">
+                        <p class="col">Nombre de lettres restant dans la pioche :
+                            <?php echo $_SESSION['pioche']->nombrePieces(); ?>
+                        </p>
+                        <!-- main du joueur -->
+                        <div class="col" id="main">
+                            <?php
+                            $joueur_en_cours = $_SESSION['joueur_en_cours'];
+                            echo '<div class="main-joueur">Main de ' . $joueur_en_cours->nom . '</div>';
+                            foreach ($joueur_en_cours->main as $piece) {
+                                echo "<input type=\"button\" value=\"" . $piece->lettre . "\"  />";
+                            }
+                            ?>
+                        </div>
+
+                        <!-- bouton de fin de partie -->
+                        <form method="post" action="">
+                            <input type="submit" name="finPartie" value="Fin partie" />
+                        </form>
+
+                        <!-- bouton changer de lettres -->
+                        <form method="post" action="" class="col">
+                            <input type="submit" name="pioche" value="Changer vos lettres" />
+                        </form>
+                        <!-- bouton passer le tour -->
+                        <form method="post" action="" class="col">
+                            <input type="submit" name="pass" value="Passer votre tour" />
+                        </form>
+                    </div>
             </div>
         </div>
-        <div class ="main-joueur">Tour de <?php echo $_SESSION['joueur_en_cours']->nom ?></div>
+
         <div id="plateau">
             <?php
                 $game = $_SESSION['game'];
@@ -137,60 +177,6 @@
 
             ?>
         </div>
-        <section class ="container-sm">
-            <div class ="row">
-                <p class ="col">Nombre de lettres restant dans la pioche : <?php echo $_SESSION['pioche']->nombrePieces(); ?></p> 
-                <div class = "col" id="main">
-                    <?php
-                        $joueur_en_cours = $_SESSION['joueur_en_cours'];
-                        echo '<div class="main-joueur">Main de '.$joueur_en_cours->nom.'</div>';
-                        foreach($joueur_en_cours->main as $piece){
-                            echo "<input type=\"button\" value=\"". $piece->lettre."\"  />";
-                        }
-                    ?>
-                </div>
-                <form method="post" action="">
-                    <input type="submit" name="finPartie" value="Fin partie"/>
-                </form>
-                <form method="post" action="" class ="col">
-                    <input type="submit" name="pioche" value="Changer vos lettres"/>
-                </form>
-
-                <form method="post" action="" class ="col">
-                    <input type="submit" name="pass" value="Passer votre tour"/>
-                </form>
-            </div>
-            <div >
-                <form name="submit" method="post" action="">
-                    <input type="text" name="mot">
-                    <select name="direction">
-                        <option value="">--Choissisez un sens--</option>
-                        <option value="hori">Horizontale</option>
-                        <option value="verti">Verticale</option>
-                    </select>
-                    <select name="posX">
-                        <option value="">--Choissisez une PosX--</option>
-                        <?php
-                        for($x=1; $x<16; $x++){
-                            echo '<option value='.$x.'>'.$x.'</option>';
-                        }
-                        ?>
-                    </select>
-                    <select name="posY">
-                        <option value="">--Choissisez une PosY--</option>
-                        <?php
-                        for($y=1; $y<16; $y++){
-                            echo '<option value='.$y.'>'.$y.'</option>';
-                        }
-                        ?>
-                    </select>
-                    <input type="submit" name="submit" value="Check">
-                </form>
-            </div>
-        </section>
-            <!-- <div>
-                <img src="./img/Plateau" alt="Plateau de jeu du Scrabble">
-            </div> -->
     </main>
     <footer>
 
