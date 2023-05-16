@@ -8,6 +8,7 @@ Installation
 Pour exécuter ce projet, vous devez avoir un serveur web local configuré avec le support de PHP. Suivez les étapes ci-dessous pour installer le projet :
 
 -Clonez ce dépôt sur votre machine locale ou téléchargez-le sous forme d'archive ZIP.
+-Importer la BDD projet_scrabble.sql dans votre BDD local.
 -Placez les fichiers dans le répertoire racine de votre serveur web.
 -Assurez-vous que le module PHP est activé sur votre serveur.
 -Ouvrez votre navigateur web et accédez à l'URL correspondant à votre serveur local.
