@@ -302,10 +302,7 @@
                 $motComplet .= $this->plateau->getCellules($y, $posX)->getLettre();
                 $y++;
             }
-        }
-        
-        var_dump($motComplet);
-        
+        }        
         return $this->verifMotValide($motComplet);
     }
 }
