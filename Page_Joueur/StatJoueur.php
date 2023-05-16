@@ -46,54 +46,21 @@
                         <p><?php
                         echo'<div class="space3">';
                            echo '<div> <h1> Historique de partie </h1>';
-                           foreach($resultats as $resultat){
-                               $nb_mot_total += $resultat["nb__mot_jouer"];
-                               $score += $resultat["score"];
-                               echo "ID partie : " . $resultat["Id_partie"] . "<br>";
-                               echo "Score : " . $resultat["score"] . "<br>";
-                               echo "Nombre de mot jouer : " . $resultat["nb__mot_jouer"] . "<br><br><br>";
-                           }
-                           echo'</div>';
-                       
-                       
-                           echo '<div> <h1>Statistique du compte</h1> ';
-                           echo 'Nb mot jouer au total : '.$nb_mot_total. "<br>";
-                           echo 'Score moyen par partie : '.($score / count($resultats)). "<br>";
-                           //echo 'Score moyen par mot :'.($score / $nb_mot_total). "<br>";
-                           //echo 'Moyenne de mot posé par partie : '.($nb_mot_total / count($resultats)). "<br>";
-                           echo'</div>';
-                        echo'</div>';   ?>
-                        </p>
-                        <br>
-                        <br>
-                       <a href="../index.php" class="btn btn-primary">retour au menu</a>
-                        
-                    </center>
-                </div>
+    foreach($resultats as $resultat){
+        $nb_mot_total += $resultat["nb__mot_jouer"];
+        $score += $resultat["score"];
+        echo "ID partie : " . $resultat["Id_partie"] . "<br>";
+        echo "Score : " . $resultat["score"] . "<br>";
+        echo "Nombre de mot jouer : " . $resultat["nb__mot_jouer"] . "<br>";
+    }
 
-            </div>
 
-        </section>
+    echo '<br><div> Statistique du compte </div>';
+    echo 'Nb mot jouer au total : '.$nb_mot_total. "<br>";;
+    echo 'Score moyen par partie : '.($score / count($resultats)). "<br>";;
+    echo 'Score moyen par mot :'.($score / $nb_mot_total). "<br>";;
+    echo 'Moyenne de mot posé par partie : '.($nb_mot_total / count($resultats)). "<br>";;
 
-    </main>
 
-    <footer>
-        <section class="container mt-2">
-            <div class="row">
-                <li class="col"><a href="">Contact</a></li>
-                <li class="col"><a href="">Conditions d'utilisation</a></li>
-                <li class="col"><a href="">Credits</a></li>
-                <li class="col"><a href="">Paramètres de confidentialité</a></li>
-            </div>
 
-        </section>
-        <center>
-            <p>Le propriétaire de ce site n’est pas responsable du contenu généré par l’utilisateur (mot utiliser,
-                messages, noms d’utilisateur)</p>
-        </center>
-
-    </footer>
-
-</body>
-
-</html>
+?>

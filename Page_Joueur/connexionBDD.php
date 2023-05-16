@@ -1,7 +1,7 @@
 <?php
 
 // Informations de connexion à la base de données
-$servername = "localhost:3306";
+$servername = "localhost:3308";
 $nom_utilisateur = "root";
 $motdepasse = "";
 $BDDname = "projet_scrabble";
@@ -11,7 +11,6 @@ try {
     $connb = new PDO("mysql:host=$servername;dbname=$BDDname", $nom_utilisateur, $motdepasse);
     // Définir le mode d'erreur PDO à exception
     $connb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion réussie à la base de données.";
 } catch(PDOException $e) {
     echo "Erreur de connexion à la base de données : " . $e->getMessage();
 }
