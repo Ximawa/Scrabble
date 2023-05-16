@@ -4,38 +4,37 @@ require_once("connexionBDD.php");
 session_start();
 
 
-
-// Connexion à la base de données MySQL
-$pdo = new PDO("mysql:host=$servername;dbname=$BDDname", $nom_utilisateur, $motdepasse);
-
 // Vérification des informations de connexion
 if (isset($_POST['nom']) && isset($_POST['motdepasse'])) {
 
     $username = $_POST['nom'];
     $password = $_POST['motdepasse'];
 
-    $query = "SELECT * FROM joueurs WHERE nom_joueur = :nom_joueur AND mdp = :mdp";
-    $statement = $pdo->prepare($query);
-    $statement->execute(['nom_joueur' => $username, 'mdp' => $password]);
 
-    if (password_verify($password,$mdpcrypter)){
-        if ($statement->rowCount() > 0) {
-            $joueur = $statement->fetch();
+    $query = "SELECT * FROM joueurs WHERE nom_joueur = :nom_joueur";
+    $statement = $connb->prepare($query);
+    $statement->execute(['nom_joueur' => $username]);
+
+    if ($statement->rowCount() > 0) {
+        
+        $joueur = $statement->fetch();
+        $cryptpwd = $joueur['mdp'];
+        if(password_verify($password, $cryptpwd)){
             $_SESSION['id_utilisateur'] = $joueur['Id'];
             $_SESSION['nom_utilisateur'] = $joueur['nom_joueur'];
-
             // L'utilisateur est authentifié, rediriger vers la page d'accueil de l'application
             header('Location: ../index.php');
             exit();
-        } else {
-
+        }else {
             // Les informations de connexion sont invalides, afficher un message d'erreur
             $erreur = "Nom d'utilisateur ou mot de passe incorrect";
             echo $erreur;
-        }
+        } 
+    }else{
+            $erreur = "Nom d'utilisateur ou mot de passe incorrect";
+            echo $erreur;
+        } 
     }
-    
-}
 ?>
 
 <!DOCTYPE html>
