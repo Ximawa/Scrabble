@@ -34,19 +34,25 @@
             }
         }
 
-        public function RetirerPiece($lettre){
-            foreach($this->main as $index => $piece) {
-                if ($piece->get_lettre() == $lettre) {
-                    array_splice($this->main, $index, 1);
-                    break;
+        public function RetirerPiece($mot){
+            $lettres = str_split($mot);
+            foreach($lettres as $lettre){
+                foreach($this->main as $index => $piece) {
+                    if ($piece->get_lettre() == $lettre) {
+                        array_splice($this->main, $index, 1);
+                        break;
+                    }
                 }
             }
         }
 
-        public function AjouterScore($lettre){
-            foreach($this->main as $index => $piece) {
-                if ($piece->get_lettre() == $lettre) {
-                    $this->score += $piece->get_valeur();
+        public function AjouterScore($mot){
+            $lettres = str_split($mot);
+            foreach($lettres as $lettre ){
+                foreach($this->main as $index => $piece) {
+                    if ($piece->get_lettre() == $lettre) {
+                        $this->score += $piece->get_valeur();
+                    }
                 }
             }
         }

@@ -40,6 +40,7 @@
                             echo "Le premier mot doit passer par le centre";
                             return false;
                         }
+                        $motComplet = $mot;
                     }else{
                         if($this->emplaceMotDisponible($mot,  $posY, $posX, $direction) == false){
                             echo "Vous ne pouvez pas poser un mot par dessus un mot existant";
@@ -47,21 +48,22 @@
                         }elseif($this->Adjacent($mot, $posY, $posX, $direction) == false){
                             echo "Les mots doivent être adjacent a un mot existant";
                             return false;
-                        }elseif($this->obtenirMotComplet($mot, $posY, $posX, $direction) == false){
+                        }
+                        $motComplet = $this->obtenirMotComplet($mot, $posY, $posX, $direction);
+                        if($this->verifMotValide($motComplet) == false){
                             echo "Vous devez completez avec des mots valide";
                             return false;
-                        }
-                        
-                        
+                        }      
                     }
                     // Poser mot 
                     $longueur_mot = strlen($mot);
                     if ($direction == "hori") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posX][$posY + $i]->setLettre($mot[$i]);
-                            $joueur->AjouterScore($mot[$i]);
-                            $joueur->RetirerPiece($mot[$i]);     
+                                
                         }
+                        $joueur->AjouterScore($motComplet);
+                        $joueur->RetirerPiece($mot); 
                         $this->motJouer[] = $mot;
                         $joueur->nbMotJouer += 1;
                         $joueur->Piocher($pioche);
@@ -69,9 +71,10 @@
                     } elseif ($direction == "verti") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posX + $i][$posY]->setLettre($mot[$i]);
-                            $joueur->AjouterScore($mot[$i]);
-                            $joueur->RetirerPiece($mot[$i]);
+                            
                         }
+                        $joueur->AjouterScore($motComplet);
+                        $joueur->RetirerPiece($mot);
                         $this->motJouer[] = $mot;
                         $joueur->nbMotJouer += 1;
                         $joueur->Piocher($pioche);
@@ -303,7 +306,7 @@
                 $y++;
             }
         }        
-        return $this->verifMotValide($motComplet);
+        return $motComplet;
     }
 }
 
