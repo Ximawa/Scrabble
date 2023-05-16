@@ -57,12 +57,14 @@
                     }
                     // Poser mot 
                     $longueur_mot = strlen($mot);
+                    var_dump($longueur_mot);
+                    $bonus = array();
                     if ($direction == "hori") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posX][$posY + $i]->setLettre($mot[$i]);
-                                
+                            $bonus[$this->plateau->cellules[$posX][$posY + $i]->getLettre()] = $this->plateau->cellules[$posX][$posY + $i]->getBonus();
                         }
-                        $joueur->AjouterScore($motComplet);
+                        $joueur->AjouterScore($motComplet, $bonus);
                         $joueur->RetirerPiece($mot); 
                         $this->motJouer[] = $mot;
                         $joueur->nbMotJouer += 1;
@@ -71,9 +73,9 @@
                     } elseif ($direction == "verti") {
                         for ($i = 0; $i < $longueur_mot; $i++) {
                             $this->plateau->cellules[$posX + $i][$posY]->setLettre($mot[$i]);
-                            
+                            $bonus[$this->plateau->cellules[$posX][$posY + $i]->getLettre()] = $this->plateau->cellules[$posX][$posY + $i]->getBonus();
                         }
-                        $joueur->AjouterScore($motComplet);
+                        $joueur->AjouterScore($motComplet , $bonus);
                         $joueur->RetirerPiece($mot);
                         $this->motJouer[] = $mot;
                         $joueur->nbMotJouer += 1;
