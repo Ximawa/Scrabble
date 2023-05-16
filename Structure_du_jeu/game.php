@@ -114,7 +114,10 @@
         <!-- Nom et score des joueurs  -->
         <div class=parents>
             <div class="score_et_nom" id="enfant1">
-                <div>
+                <div id="scoreboard">
+                    <?php echo "Score :"?>
+                </div>
+                <div class="joueur_score">
                     <?php echo $_SESSION['joueur1']->nom ?>
                     <?php echo $_SESSION['joueur1']->score ?>
                 </div>
