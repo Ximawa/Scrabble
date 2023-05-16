@@ -83,6 +83,14 @@ main{
     padding-bottom: 20px;
 }
 
+.space3{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+
 body{
     background-image: url(../img/background.png);
 }
