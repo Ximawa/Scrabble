@@ -47,7 +47,11 @@
                         }elseif($this->Adjacent($mot, $posY, $posX, $direction) == false){
                             echo "Les mots doivent être adjacent a un mot existant";
                             return false;
+                        }elseif($this->obtenirMotComplet($mot, $posY, $posX, $direction) == false){
+                            echo "Vous devez completez avec des mots valide";
+                            return false;
                         }
+                        
                         
                     }
                     // Poser mot 
@@ -257,6 +261,50 @@
         // Retourne les cases utilisées par le mot si elles sont toutes vides
         return $dispo;
         }
+    
+
+    function obtenirMotComplet($mot, $posX, $posY, $direction) {
+        $len = strlen($mot);
+        $motComplet = "";
+        
+        // Obtention du mot complet dans la même ligne ou colonne
+        if ($direction == "hori") {
+            // Recherche vers la gauche
+            $x = $posX - 1;
+            while ($x >= 0 && $this->plateau->getCellules($posY,$x)->getLettre() !== "") {
+                $motComplet = $this->plateau->getCellules($posY,$x)->getLettre() . $motComplet;
+                $x--;
+            }
+            
+            // Ajout du mot en cours
+            $motComplet .= $mot;
+            
+            // Recherche vers la droite
+            $x = $posX + $len;
+            while ($x < 15 && $this->plateau->getCellules($posY,$x)->getLettre() !== "") {
+                $motComplet .= $this->plateau->getCellules($posY, $x)->getLettre();
+                $x++;
+            }
+        } else {
+            // Recherche vers le haut
+            $y = $posY - 1;
+            while ($y >= 0 && $this->plateau->getCellules($y, $posX)->getLettre() !== "") {
+                $motComplet = $this->plateau->getCellules($y, $posX)->getLettre() . $motComplet;
+                $y--;
+            }
+            
+            // Ajout du mot en cours
+            $motComplet .= $mot;
+            
+            // Recherche vers le bas
+            $y = $posY + $len;
+            while ($y < 15 && $this->plateau->getCellules($y, $posX)->getLettre() !== "") {
+                $motComplet .= $this->plateau->getCellules($y, $posX)->getLettre();
+                $y++;
+            }
+        }        
+        return $this->verifMotValide($motComplet);
     }
+}
 
 ?>
