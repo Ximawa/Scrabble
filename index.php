@@ -63,27 +63,10 @@
     </header>
 
     <main>
+
         <section class="container mt-2">
             <div class="text-white bg-dark p-2 rounded">
-                <p>Multijoueur</p>
-                <div class="row">
-                    <form method="post" action="" class="col">
-                        <input type="submit" name="Creation de la partie" value="Creation de la partie"
-                            class="btn btn-primary">
-                    </form>
-
-                    <form method="post" action="" class="col">
-                        <input type="submit" name="rejoindre la partie" value="rejoindre la partie"
-                            class="btn btn-primary">
-                    </form>
-                </div>
-
-            </div>
-
-        </section>
-        <section class="container mt-2">
-            <div class="text-white bg-dark p-2 rounded">
-                <p>Local</p>
+                <p>Entrez le nom des joueurs</p>
                 <div class="row">
                     <form method="post" action="Structure_du_jeu/game.php" class="col" class="form-label">
                         <?php if ( isset($_SESSION['id_utilisateur'])){
