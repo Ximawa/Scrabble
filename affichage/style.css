@@ -133,10 +133,12 @@ p{
 .contenerLogo{
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .logo{
     width: 80px;
+    padding-top: 20px;
 }
 
 li {
@@ -156,4 +158,6 @@ a:hover{
 .main-joueur {
     color: white;
 }
+
+
 

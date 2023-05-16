@@ -99,13 +99,14 @@
 </head>
 <body>
     <header>
-        
-        <section class="contenerLogo"> 
-            <a href="../index.php">        
-                <img class="logo" src="../img\Logo_Epsi_Scrabble.png" alt="LOGO du jeu">
-            </a>
-            <h1>Scrabble</h1>  
-        </section>
+            <div class="contenerLogo">
+                <a href="../index.php">
+                    <section class ="space">
+                        <img class="logo" src="../img\Logo_Epsi_Scrabble.png" alt="logo">
+                        <h1>Scrabble</h1> 
+                    </section>
+                </a>
+            </div>
            
     </header>
     <main>
