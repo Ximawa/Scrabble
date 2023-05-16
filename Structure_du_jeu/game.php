@@ -193,8 +193,6 @@
             </div> -->
     </main>
     <footer>
-        
-        <p>SCORE BOARD</p>
 
         <div class="linkFooter">
             <li><a href="">Contact</a></li>
